@@ -1,0 +1,31 @@
+{
+	"name": "shop",
+	"version": "1.0.0",
+	"description": "",
+	"type": "module",
+	"main": "src/main.js",
+	"scripts": {
+		"start": "nodemon --watch src",
+		"watch": "node-sass --watch --output-style=compressed ./src/resources/public/scss --output ./src/resources/public/css",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"create-react-app": "^4.0.3",
+		"express": "^4.17.1",
+		"express-fileupload": "^1.2.1",
+		"express-handlebars": "^5.3.2",
+		"express-session": "^1.17.2",
+		"handlebars": "^4.7.7",
+		"mongodb": "^4.0.0",
+		"mongoose": "^5.13.2",
+		"morgan": "^1.10.0",
+		"nodemon": "^2.0.12",
+		"passport": "^0.4.1",
+		"passport-local": "^1.0.0"
+	},
+	"devDependencies": {
+		"node-sass": "^6.0.1"
+	}
+}

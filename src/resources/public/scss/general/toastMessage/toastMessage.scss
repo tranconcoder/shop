@@ -1,0 +1,148 @@
+@import "../variables", "../mixin", "../general.scss";
+
+// Variables
+$toastMessageItemHeight: 6rem;
+$toastMessageListSeperate: 2rem;
+$toastMessageItemSeperate: 1.4rem;
+
+// Font
+// item title
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;500;600&family=Libre+Franklin:wght@400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap");
+
+.toast-message-list {
+	&.has-navbar {
+		transform: translateY($navbarHeight);
+	}
+
+	@include position(fixed, $toastMessageListSeperate, 0);
+	z-index: 103;
+	list-style: none;
+
+	&__item {
+		@include size(auto, $toastMessageItemHeight);
+		@include flex(row, center);
+		border-radius: 1rem 0 0 1rem;
+		background-color: rgb(255, 255, 255);
+		box-shadow: 0 0.1rem 1rem 0.1rem #0000004d;
+		position: relative;
+		animation: showToastMessageItem ease 0.5s;
+		padding-right: 0.4rem;
+		margin-bottom: $toastMessageItemSeperate;
+		transition: ease 0.2s;
+		will-change: auto;
+		overflow: hidden;
+
+		&:hover {
+			filter: brightness(95%);
+			cursor: pointer;
+		}
+
+		&__icon {
+			@include size($toastMessageItemHeight);
+			background-size: 4.4rem;
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+
+		&__message {
+			margin: 0 0.5rem;
+
+			&__content {
+				height: 100%;
+				min-width: 16rem;
+				max-width: 20rem;
+				color: $textColor;
+				font: 500 1.4rem "Noto Sans SC", sans-serif;
+				margin: 0;
+				margin: 0;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				overflow: hidden;
+				word-wrap: break-word;
+			}
+		}
+
+		&__action {
+			@include flex(row, center);
+			margin: 0 0.3rem;
+
+			&__cancel-btn {
+				@include size(4rem);
+				border: 0;
+				background-color: transparent;
+				background-image: url("/static/svg/toastMessage/cancel.svg");
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: 1.4rem;
+				transition: ease 0.3s;
+
+				&:hover {
+					background-color: rgb(236, 236, 236);
+				}
+			}
+		}
+
+		&__seperate-bar {
+			@include size(0.5rem, 100%);
+			@include position(absolute, 0, 0);
+		}
+
+		&.message {
+			.toast-message-list__item__icon {
+				background-image: url("/static/svg/toastMessage/message.svg");
+			}
+
+			.toast-message-list__item__seperate-bar {
+				background-color: #66bfff;
+			}
+		}
+
+		&.warning {
+			.toast-message-list__item__icon {
+				background-image: url("/static/svg/toastMessage/warning.svg");
+			}
+
+			.toast-message-list__item__seperate-bar {
+				background-color: #ffd000;
+			}
+		}
+
+		&.error {
+			.toast-message-list__item__icon {
+				background-image: url("/static/svg/toastMessage/error.svg");
+			}
+
+			.toast-message-list__item__seperate-bar {
+				background-color: #ff6666;
+			}
+		}
+	}
+}
+
+// Animation
+@keyframes showToastMessageItem {
+	0% {
+		opacity: 0;
+		transform: translateX(100%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes hideToastMessageItem {
+	0% {
+		height: $toastMessageItemHeight;
+		margin-bottom: $toastMessageItemSeperate;
+		opacity: 1;
+		transform: translateX(0);
+	}
+	100% {
+		height: 0;
+		margin-bottom: 0;
+		opacity: 0;
+		transform: translateX(100%);
+	}
+}

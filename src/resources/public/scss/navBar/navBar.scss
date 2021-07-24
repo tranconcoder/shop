@@ -1,0 +1,115 @@
+// IMPORT
+// general module
+@import "../general/mixin", "../general/variables";
+
+// FONT
+// "Exo"
+@import url("https://fonts.googleapis.com/css2?family=Exo:wght@300;400;500;600;700;800&display=swap");
+// "Kanit"
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500&display=swap");
+
+// VARIABLES
+$colorGradient0: rgb(34, 64, 199);
+$colorGradient1: rgb(1, 153, 255);
+$colorDirectionItems: #2668d9;
+$colorHoverBar: rgba(34, 64, 199, 0.5);
+$itemSeperate: 2rem;
+
+.header {
+  @include size(100%, $navbarHeight);
+  @include position(fixed, 0, 0);
+  padding: 0;
+  background-color: transparent;
+
+  .nav-bar {
+    @include size(100%);
+    @include flex(row, center, space-between);
+    @include position(relative);
+    padding: 0 $edgePageSeperate;
+
+    // NAVBAR [LEFT]
+    &__left-container {
+      &__logo {
+        font: 600 3rem "Oswald", sans-serif;
+        user-select: none;
+        background: -webkit-linear-gradient(
+          0deg,
+          $colorGradient0,
+          $colorGradient1
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+
+    // NAVBAR [CENTER]
+    &__center-container {
+      @include flex(row, center);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+
+      // DIRECTION
+      &__direction-list {
+        @include flex(row, center);
+        list-style: none;
+        margin-bottom: 0;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        // ITEM DIRECTION
+        &__item {
+          @include size(auto, $navbarHeight);
+          @include flex(row, center, center);
+          color: rgb(148, 157, 200);
+          font: 400 1.8rem "Signika", sans-serif;
+          transition: ease 0.3s;
+          margin: 0 $itemSeperate;
+          position: relative;
+          user-select: none;
+
+          &:hover {
+            color: $colorDirectionItems;
+          }
+
+          &.on-page {
+            color: $colorDirectionItems;
+          }
+        }
+      }
+    }
+
+    // NAVBAR [RIGHT]
+    &__right-container {
+      @include flex(row, center, flex-start);
+      height: 3rem;
+
+      // AUTHENTICATE
+      &__authenticate {
+        @include flex(row, center);
+        @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap");
+        font: 500 1.6rem "Work Sans", sans-serif;
+        line-height: 1.6rem;
+        color: $colorDirectionItems;
+
+        &__login {
+          color: $whiteColor;
+          background-color: $colorDirectionItems;
+          border: 0.2rem solid $colorDirectionItems;
+          padding: 0.5rem 2rem;
+          border-radius: 2rem;
+          margin-left: 1rem;
+          transition: linear 0.1s;
+
+          &:hover {
+            color: $colorDirectionItems;
+            background-color: $whiteColor;
+            border: 0.2rem solid $colorDirectionItems;
+          }
+        }
+      }
+    }
+  }
+}

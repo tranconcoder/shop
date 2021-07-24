@@ -1,0 +1,33 @@
+@import "_variables", "_mixin";
+// font family
+// "Oswald", sans-serif (logo)
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap");
+// 'Signika', sans-serif (navbar direction item)
+@import url("https://fonts.googleapis.com/css2?family=Signika:wght@300;400;500;600;700&display=swap");
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+a {
+	color: unset;
+	text-decoration: none;
+
+	&:hover {
+		color: unset;
+	}
+}
+
+html {
+	font-size: 62.5%;
+}
+
+input {
+	outline: none;
+}
+
+// SCROLL
+::-webkit-scrollbar {
+	display: none;
+}

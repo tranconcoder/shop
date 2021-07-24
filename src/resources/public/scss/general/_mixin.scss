@@ -1,0 +1,44 @@
+@import "_variables";
+
+@mixin size($width, $height: $width) {
+	width: $width;
+	height: $height;
+}
+
+@mixin flex(
+	$direction: row,
+	$alignItems: flex-start,
+	$justifyContent: flex-start
+) {
+	display: flex;
+	flex-direction: $direction;
+	align-items: $alignItems;
+	justify-content: $justifyContent;
+}
+
+@mixin pushDownAnimation($length, $time: 0.3s) {
+	animation: animation ease $time;
+
+	@keyframes animation {
+		from {
+			transform: translateY(-$length);
+		}
+		to {
+			transform: translateY(0rem);
+		}
+	}
+}
+
+@mixin position(
+	$position,
+	$top: unset,
+	$right: unset,
+	$bottom: unset,
+	$left: unset
+) {
+	position: $position;
+	top: $top;
+	right: $right;
+	bottom: $bottom;
+	left: $left;
+}

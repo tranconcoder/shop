@@ -1,0 +1,319 @@
+<link rel="stylesheet" href="/static/css/authPage/auth.css" />
+
+<div class="auth container-fluid p-0">
+	<a href="/" class="auth__back-btn btn">
+		<span class="auth__back-btn__icon"></span>
+	</a>
+
+	<div class="auth__container row g-0">
+		{{! THUMNAIL }}
+		<div class="auth__container__thumnail col-6">
+			<div class="auth__container__thumnail__message">
+				<h2 class="auth__container__thumnail__message__main">
+					Hi, welcome!
+				</h2>
+				<p class="auth__container__thumnail__message__desc">
+					Chúc bạn có một trải nghiệm mua hàng tốt nhất!
+				</p>
+			</div>
+		</div>
+
+		{{! FORM }}
+		<div class="auth__container__auth-form col-6">
+			{{! DIRECTION }}
+			<div class="auth__container__auth-form__direction">
+				<div class="auth__container__auth-form__direction__container">
+
+					{{! INPUT DIRECTION }}
+					<input
+						id="direction-input-login"
+						type="radio"
+						value="login"
+						checked
+						name="form-now"
+					/>
+					<input
+						id="direction-input-register"
+						type="radio"
+						value="register"
+						name="form-now"
+					/>
+
+					<label
+						for="direction-input-login"
+						class="auth__container__auth-form__direction__container__login"
+					>
+						Đăng Nhập
+					</label>
+					<label
+						for="direction-input-register"
+						class="auth__container__auth-form__direction__container__register"
+					>
+						Đăng Ký
+					</label>
+
+					<div
+						class="auth__container__auth-form__direction__container__active-bar"
+					></div>
+				</div>
+			</div>
+
+			{{! LOGIN FORM }}
+			<form class="login-form">
+				{{! OTHERS METHOD }}
+				<div class="login-form__others-method">
+					<h3 class="login-form__others-method__title"></h3>
+					{{! FACEBOOK }}
+					<div class="login-form__others-method__facebook">
+						<img
+							src="/static/svg/general/facebook--white.svg"
+							alt="login-facebook"
+							class="login-form__others-method__facebook__logo"
+						/>
+						<p class="login-form__others-method__facebook__label">
+							Đăng nhập bằng Facebook
+						</p>
+					</div>
+					{{! GOOGLE }}
+					<div class="login-form__others-method__google">
+						<img
+							src="/static/svg/general/google--white.svg"
+							alt="login-google"
+							class="login-form__others-method__google__logo"
+						/>
+						<p class="login-form__others-method__google__label">
+							Đăng nhập bằng Google
+						</p>
+					</div>
+
+				</div>
+
+				{{! INPUT CONTAINER }}
+				<div class="login-form__input-container">
+					<div class="login-form__input-container__label-seperate"></div>
+
+					<div
+						class="login-form__input-container__username-container input-container"
+					>
+						<input
+							id="logUsername"
+							name="logUsername"
+							type="text"
+							placeholder=" "
+							class="login-form__input-container__username-container__input input-element"
+						/>
+
+						<label
+							for="logUsername"
+							class="login-form__input-container__username-container__place-holder input-place-holder"
+						>
+							<i class="far fa-user"></i>
+							Tài Khoản
+						</label>
+					</div>
+
+					<div
+						class="login-form__input-container__password-container input-container"
+					>
+						<input
+							id="logPassword"
+							name="logPassword"
+							type="password"
+							placeholder=" "
+							class="login-form__input-container__password-container__input input-element"
+						/>
+
+						<label
+							for="logPassword"
+							class="login-form__input-container__password-container__place-holder input-place-holder"
+						>
+							<i class="far fa-lock-alt"></i>
+							Mật Khẩu
+						</label>
+					</div>
+				</div>
+
+				<a href="" class="login-form__forgot-password">Quên mật khẩu?</a>
+
+				<button class="login-form__submit-btn submit-btn">ĐĂNG NHẬP</button>
+
+			</form>
+
+			{{! REGISTER FORM }}
+			<form class="register-form">
+				{{! OTHERS METHOD }}
+				<div class="register-form__others-method">
+					<h3 class="register-form__others-method__title"></h3>
+					<div class="register-form__others-method__container">
+						{{! FACEBOOK }}
+						<div
+							class="register-form__others-method__container__facebook"
+						>
+							<img
+								src="/static/svg/general/facebook--white.svg"
+								alt="register-facebook"
+								class="register-form__others-method__container__facebook__logo"
+							/>
+							<p
+								class="register-form__others-method__container__facebook__label"
+							>
+								Đăng ký bằng<br />
+								Facebook
+							</p>
+						</div>
+						{{! GOOGLE }}
+						<div class="register-form__others-method__container__google">
+							<img
+								src="/static/svg/general/google--white.svg"
+								alt="register-google"
+								class="register-form__others-method__container__google__logo"
+							/>
+							<p
+								class="register-form__others-method__container__google__label"
+							>
+								Đăng ký bằng<br />
+								Google
+							</p>
+						</div>
+					</div>
+
+				</div>
+
+				{{! INPUT CONTAINER }}
+				<div class="register-form__input-container">
+					<div
+						class="register-form__input-container__label-seperate"
+					></div>
+
+					{{! FIRST NAME / LAST NAME}}
+					<div class="register-form__input-container__name">
+						<div
+							class="register-form__input-container__name__first-name-container input-container"
+						>
+							<input
+								type="text"
+								placeholder=" "
+								id="regFirstName"
+								class="register-form__input-container__name__first-name-container__input input-element"
+							/>
+
+							<label
+								for="regFirstName"
+								class="register-form__input-container__name__first-name-container__place-holder input-place-holder"
+							>
+								<i class="far fa-pen"></i>
+								Họ
+							</label>
+						</div>
+
+						<div
+							class="register-form__input-container__name__last-name-container input-container"
+						>
+							<input
+								id="regLastName"
+								type="text"
+								placeholder=" "
+								class="register-form__input-container__name__last-name-container__input input-element"
+							/>
+
+							<label
+								for="regLastName"
+								class="register-form__input-container__name__last-name-container__place-holder input-place-holder"
+							>
+								<i class="far fa-edit"></i>
+								Tên
+							</label>
+						</div>
+					</div>
+
+					{{! ACCOUNT }}
+					<div class="register-form__input-container__account">
+						<div
+							class="register-form__input-container__account__username-container input-container"
+						>
+							<input
+								type="text"
+								placeholder=" "
+								id="regUsername"
+								class="register-form__input-container__account__username-container__input input-element"
+							/>
+
+							<label
+								for="regUsername"
+								class="register-form__input-container__account__username-container__place-holder input-place-holder"
+							>
+								<i class="far fa-user"></i>
+								Tài Khoản
+							</label>
+						</div>
+
+						<div
+							class="register-form__input-container__account__password-container input-container"
+						>
+							<input
+								id="regPassword"
+								type="password"
+								placeholder=" "
+								class="register-form__input-container__account__password-container__input input-element"
+							/>
+
+							<label
+								for="regPassword"
+								class="register-form__input-container__account__password-container__place-holder input-place-holder"
+							>
+								<i class="far fa-lock-alt"></i>
+								Mật Khẩu
+							</label>
+						</div>
+					</div>
+
+					{{! GMAIL }}
+					<div
+						class="register-form__input-container__gmail-container input-container"
+					>
+						<input
+							id="regGmail"
+							placeholder=" "
+							type="email"
+							class="register-form__input-container__gmail-container__input input-element"
+						/>
+
+						<label
+							for="regGmail"
+							class="register-form__input-container__gmail-container__place-holder input-place-holder"
+						>
+							<i class="far fa-envelope"></i>
+							Địa Chỉ Gmail
+						</label>
+					</div>
+
+					{{! ADDRESS }}
+					<div
+						class="register-form__input-container__address-container input-container"
+					>
+						<input
+							type="text"
+							placeholder=" "
+							id="regAddress"
+							class="register-form__input-container__address-container__input input-element"
+						/>
+
+						<label
+							for="regAddress"
+							class="register-form__input-container__address-container__place-holder input-place-holder"
+						>
+							<i class="far fa-map-marker-alt"></i>
+							Địa Chỉ Giao Hàng
+						</label>
+					</div>
+				</div>
+
+				<button class="register-form__submit-btn submit-btn">ĐĂNG KÝ</button>
+
+			</form>
+		</div>
+	</div>
+</div>
+
+<script src="/static/js/authPage/main.js"></script>
+<script src="/static/js/authPage/uxUi.js"></script>
