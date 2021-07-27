@@ -1,42 +1,49 @@
 <link rel="stylesheet" href="/static/css/navBar/navBar.css" />
 
 <div class="header container-fluid">
-  <div class="nav-bar container-xxl">
-    {{! NAVBAR left }}
-    <div class="nav-bar__left-container">
-      <div class="nav-bar__left-container__logo">
-        CONSSHOP
-      </div>
-    </div>
+	<div class="nav-bar container-xxl">
+		{{! NAVBAR left }}
+		<div class="nav-bar__left-container">
+			<div class="nav-bar__left-container__logo">
+				CONSSHOP
+			</div>
+		</div>
 
-    {{! NAVBAR center }}
-    <div class="nav-bar__center-container">
-      {{! DIRECTION }}
-      <ul class="nav-bar__center-container__direction-list">
-        <li class="nav-bar__center-container__direction-list__item on-page">
-          <a href="">Trang Chủ</a>
-        </li>
-        <li class="nav-bar__center-container__direction-list__item">
-          <a href="">Sản Phẩm</a>
-        </li>
-        <li class="nav-bar__center-container__direction-list__item">
-          <a href="">Giỏ Hàng</a></li>
-        <li class="nav-bar__center-container__direction-list__item">
-          <a href="">Hỗ Trợ</a>
-        </li>
-      </ul>
-    </div>
+		{{! NAVBAR center }}
+		<div class="nav-bar__center-container">
+			{{! DIRECTION }}
+			<ul class="nav-bar__center-container__direction-list">
+				<li class="nav-bar__center-container__direction-list__item on-page">
+					<a href="">Trang Chủ</a>
+				</li>
+				<li class="nav-bar__center-container__direction-list__item">
+					<a href="">Sản Phẩm</a>
+				</li>
+				<li class="nav-bar__center-container__direction-list__item">
+					<a href="">Giỏ Hàng</a></li>
+				<li class="nav-bar__center-container__direction-list__item">
+					<a href="">Hỗ Trợ</a>
+				</li>
+			</ul>
+		</div>
 
-    {{! NAVBAR center }}
-    <div class="nav-bar__right-container">
-      {{! AUTHENTICATE }}
-      <div class="nav-bar__right-container__authenticate">
-        <a
-          href="/authenticate"
-          class="nav-bar__right-container__authenticate__login"
-        >Đăng Nhập</a>
-      </div>
-    </div>
-
-  </div>
+		{{! NAVBAR right }}
+		<div class="nav-bar__right-container">
+			{{#if username}}
+				{{! AVATAR [logged in] }}
+				<div class="nav-bar__right-container__avatar">
+					<div class="nav-bar__right-container__avatar__image"></div>
+					<div class="nav-bar__right-container__avatar__more"></div>
+				</div>
+			{{else}}
+				{{! AUTHENTICATE [not logged in] }}
+				<div class="nav-bar__right-container__authenticate">
+					<a
+						href="/authenticate"
+						class="nav-bar__right-container__authenticate__login"
+					>Đăng Nhập</a>
+				</div>
+			{{/if}}
+		</div>
+	</div>
 </div>

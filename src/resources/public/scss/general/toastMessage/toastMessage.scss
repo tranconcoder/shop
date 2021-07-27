@@ -8,8 +8,11 @@ $toastMessageItemSeperate: 1.4rem;
 // Font
 // item title
 @import url("https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;500;600&family=Libre+Franklin:wght@400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap");
 
 .toast-message-list {
+	max-height: 100vh;
+	overflow-y: scroll;
 	&.has-navbar {
 		transform: translateY($navbarHeight);
 	}
@@ -31,6 +34,7 @@ $toastMessageItemSeperate: 1.4rem;
 		transition: ease 0.2s;
 		will-change: auto;
 		overflow: hidden;
+		user-select: none;
 
 		&:hover {
 			filter: brightness(95%);
@@ -45,14 +49,13 @@ $toastMessageItemSeperate: 1.4rem;
 		}
 
 		&__message {
+			flex-grow: 1;
 			margin: 0 0.5rem;
 
 			&__content {
-				height: 100%;
-				min-width: 16rem;
-				max-width: 20rem;
+				@include size(20rem, 100%);
 				color: $textColor;
-				font: 500 1.4rem "Noto Sans SC", sans-serif;
+				font: 600 1.5rem "Nunito", sans-serif;
 				margin: 0;
 				margin: 0;
 				display: -webkit-box;

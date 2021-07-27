@@ -59,7 +59,7 @@
 			</div>
 
 			{{! LOGIN FORM }}
-			<form class="login-form">
+			<form class="login-form" method="POST" action="/authenticate/login">
 				{{! OTHERS METHOD }}
 				<div class="login-form__others-method">
 					<h3 class="login-form__others-method__title"></h3>
@@ -93,11 +93,12 @@
 					<div class="login-form__input-container__label-seperate"></div>
 
 					<div
+						id="logUsernameContainer"
 						class="login-form__input-container__username-container input-container"
 					>
 						<input
 							id="logUsername"
-							name="logUsername"
+							name="username"
 							type="text"
 							placeholder=" "
 							class="login-form__input-container__username-container__input input-element"
@@ -113,11 +114,12 @@
 					</div>
 
 					<div
+						id="logPasswordContainer"
 						class="login-form__input-container__password-container input-container"
 					>
 						<input
 							id="logPassword"
-							name="logPassword"
+							name="password"
 							type="password"
 							placeholder=" "
 							class="login-form__input-container__password-container__input input-element"
@@ -135,12 +137,19 @@
 
 				<a href="" class="login-form__forgot-password">Quên mật khẩu?</a>
 
-				<button class="login-form__submit-btn submit-btn">ĐĂNG NHẬP</button>
+				<button
+					id="logSubmitBtn"
+					class="login-form__submit-btn submit-btn"
+				>ĐĂNG NHẬP</button>
 
 			</form>
 
 			{{! REGISTER FORM }}
-			<form class="register-form">
+			<form
+				class="register-form"
+				method="POST"
+				action="/authenticate/register"
+			>
 				{{! OTHERS METHOD }}
 				<div class="register-form__others-method">
 					<h3 class="register-form__others-method__title"></h3>
@@ -188,12 +197,14 @@
 					{{! FIRST NAME / LAST NAME}}
 					<div class="register-form__input-container__name">
 						<div
+							id="regFirstNameContainer"
 							class="register-form__input-container__name__first-name-container input-container"
 						>
 							<input
+								id="regFirstName"
+								name="firstName"
 								type="text"
 								placeholder=" "
-								id="regFirstName"
 								class="register-form__input-container__name__first-name-container__input input-element"
 							/>
 
@@ -207,10 +218,12 @@
 						</div>
 
 						<div
+							id="regLastNameContainer"
 							class="register-form__input-container__name__last-name-container input-container"
 						>
 							<input
 								id="regLastName"
+								name="lastName"
 								type="text"
 								placeholder=" "
 								class="register-form__input-container__name__last-name-container__input input-element"
@@ -229,12 +242,14 @@
 					{{! ACCOUNT }}
 					<div class="register-form__input-container__account">
 						<div
+							id="regUsernameContainer"
 							class="register-form__input-container__account__username-container input-container"
 						>
 							<input
+								id="regUsername"
+								name="username"
 								type="text"
 								placeholder=" "
-								id="regUsername"
 								class="register-form__input-container__account__username-container__input input-element"
 							/>
 
@@ -248,10 +263,12 @@
 						</div>
 
 						<div
+							id="regPasswordContainer"
 							class="register-form__input-container__account__password-container input-container"
 						>
 							<input
 								id="regPassword"
+								name="password"
 								type="password"
 								placeholder=" "
 								class="register-form__input-container__account__password-container__input input-element"
@@ -269,10 +286,12 @@
 
 					{{! GMAIL }}
 					<div
+						id="regGmailContainer"
 						class="register-form__input-container__gmail-container input-container"
 					>
 						<input
 							id="regGmail"
+							name="gmail"
 							placeholder=" "
 							type="email"
 							class="register-form__input-container__gmail-container__input input-element"
@@ -289,12 +308,14 @@
 
 					{{! ADDRESS }}
 					<div
+						id="regAddressContainer"
 						class="register-form__input-container__address-container input-container"
 					>
 						<input
+							id="regAddress"
+							name="address"
 							type="text"
 							placeholder=" "
-							id="regAddress"
 							class="register-form__input-container__address-container__input input-element"
 						/>
 

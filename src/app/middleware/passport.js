@@ -1,13 +1,15 @@
 import { Router } from "express";
-import { Strategy } from "passport-local";
+import passportLocal from "passport-local";
 import session from "express-session";
 import passport from "passport";
 
-const LocalStrategy = Strategy;
+const LocalStrategy = passportLocal.Strategy;
 const router = Router();
+const generalTime = new Date(Date.now());
+generalTime.toLocaleTimeString("ICT");
 
 // models
-import auther from "../../models/auther";
+import authDB from "../../resources/model/authenticate.js";
 
 router.use(
 	session({
@@ -18,33 +20,33 @@ router.use(
 );
 router.use(passport.initialize());
 router.use(passport.session());
+
 passport.use(
 	new LocalStrategy(function (username, password, done) {
-		auther.findOne({ username: username }, function (err, user) {
+		authDB.findOne({ username }, function (err, user) {
 			if (err) {
+				console.log("Error!");
 				return done(err);
 			}
 			if (!user) {
+				console.log("NO user!");
 				return done(null, false);
 			}
 			if (!(user.password === password)) {
+				console.log("Password couldn't equal!");
 				return done(null, false);
 			}
-			auther.findByIdAndUpdate(
-				user._id,
-				{ lastLoginAt: Date.now() },
-				(err, result) => {}
-			);
+			authDB.findByIdAndUpdate(user._id, { lastLoginAt: generalTime });
 			return done(null, user);
 		});
 	})
 );
 
 router.post(
-	"/",
+	"/authenticate/login",
 	passport.authenticate("local", {
 		successRedirect: "/",
-		failureRedirect: "/login-fail",
+		failureRedirect: "/authenticate",
 	})
 );
 
@@ -53,9 +55,9 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (user, done) {
-	auther.findOne({ _id: user._id }).then((user) => {
+	authDB.findOne({ _id: user._id }).then((user) => {
 		done(null, user);
 	});
 });
 
-module.exports = router;
+export default router;

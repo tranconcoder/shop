@@ -5,6 +5,7 @@ import morgan from "morgan";
 import route from "./route/routeIndex.js";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
+import passportUse from "./app/middleware/passport.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();

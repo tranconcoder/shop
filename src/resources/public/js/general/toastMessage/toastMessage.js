@@ -1,4 +1,4 @@
-General.createToastMessage = (
+General.prototype.createToastMessage = (
 	name,
 	content,
 	style = "message",
@@ -30,9 +30,6 @@ General.createToastMessage = (
 
 	// play sound effect
 	const audioElement = $(".toast-message-item-show-audio");
-	audioElement.volume = 0.1;
-	audioElement.currentTime = 0;
-	audioElement.play();
 
 	// CANCEL BUTTON
 	const cancelBtn = toastMessageItemElement.querySelector(
@@ -55,13 +52,13 @@ General.createToastMessage = (
 		toastMessageItemElement.style.animation =
 			"hideToastMessageItem ease 0.5s";
 
-		await General.wait(500);
+		await General.prototype.wait(500);
 		toastMessageItemElement.remove();
 	}
 };
 
-General.cancelToastMessge = async (element) => {
+General.prototype.cancelToastMessge = async (element) => {
 	element.style.animation = "hideToastMessageItem ease 0.5s";
-	await General.wait(500);
+	await General.prototype.wait(500);
 	element.remove();
 };

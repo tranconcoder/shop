@@ -16,100 +16,118 @@ $colorHoverBar: rgba(34, 64, 199, 0.5);
 $itemSeperate: 2rem;
 
 .header {
-  @include size(100%, $navbarHeight);
-  @include position(fixed, 0, 0);
-  padding: 0;
-  background-color: transparent;
+	@include size(100%, $navbarHeight);
+	@include position(fixed, 0, 0);
+	padding: 0;
+	background-color: transparent;
+	box-shadow: 0 0.3rem 1rem 0.1rem rgba(0, 0, 0, 0.2);
 
-  .nav-bar {
-    @include size(100%);
-    @include flex(row, center, space-between);
-    @include position(relative);
-    padding: 0 $edgePageSeperate;
+	.nav-bar {
+		@include size(100%);
+		@include flex(row, center, space-between);
+		@include position(relative);
+		padding: 0 $edgePageSeperate;
 
-    // NAVBAR [LEFT]
-    &__left-container {
-      &__logo {
-        font: 600 3rem "Oswald", sans-serif;
-        user-select: none;
-        background: -webkit-linear-gradient(
-          0deg,
-          $colorGradient0,
-          $colorGradient1
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-    }
+		// NAVBAR [LEFT]
+		&__left-container {
+			&__logo {
+				font: 600 3rem "Oswald", sans-serif;
+				user-select: none;
+				background: -webkit-linear-gradient(
+					0deg,
+					$colorGradient0,
+					$colorGradient1
+				);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+		}
 
-    // NAVBAR [CENTER]
-    &__center-container {
-      @include flex(row, center);
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
+		// NAVBAR [CENTER]
+		&__center-container {
+			@include flex(row, center);
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
 
-      // DIRECTION
-      &__direction-list {
-        @include flex(row, center);
-        list-style: none;
-        margin-bottom: 0;
+			// DIRECTION
+			&__direction-list {
+				@include flex(row, center);
+				list-style: none;
+				margin-bottom: 0;
 
-        &:hover {
-          cursor: pointer;
-        }
+				&:hover {
+					cursor: pointer;
+				}
 
-        // ITEM DIRECTION
-        &__item {
-          @include size(auto, $navbarHeight);
-          @include flex(row, center, center);
-          color: rgb(148, 157, 200);
-          font: 400 1.8rem "Signika", sans-serif;
-          transition: ease 0.3s;
-          margin: 0 $itemSeperate;
-          position: relative;
-          user-select: none;
+				// ITEM DIRECTION
+				&__item {
+					@include size(auto, $navbarHeight);
+					@include flex(row, center, center);
+					color: rgb(148, 157, 200);
+					font: 400 1.8rem "Signika", sans-serif;
+					transition: ease 0.3s;
+					margin: 0 $itemSeperate;
+					position: relative;
+					user-select: none;
 
-          &:hover {
-            color: $colorDirectionItems;
-          }
+					&:hover {
+						color: $colorDirectionItems;
+					}
 
-          &.on-page {
-            color: $colorDirectionItems;
-          }
-        }
-      }
-    }
+					&.on-page {
+						color: $colorDirectionItems;
+					}
+				}
+			}
+		}
 
-    // NAVBAR [RIGHT]
-    &__right-container {
-      @include flex(row, center, flex-start);
-      height: 3rem;
+		// NAVBAR [RIGHT]
+		&__right-container {
+			@include flex(row, center, flex-start);
 
-      // AUTHENTICATE
-      &__authenticate {
-        @include flex(row, center);
-        @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap");
-        font: 500 1.6rem "Work Sans", sans-serif;
-        line-height: 1.6rem;
-        color: $colorDirectionItems;
+			// AVATAR
+			&__avatar {
+				@include flex(row, center);
 
-        &__login {
-          color: $whiteColor;
-          background-color: $colorDirectionItems;
-          border: 0.2rem solid $colorDirectionItems;
-          padding: 0.5rem 2rem;
-          border-radius: 2rem;
-          margin-left: 1rem;
-          transition: linear 0.1s;
+				&__image {
+					@include size(4.5rem);
+					border-radius: 50%;
+					background-image: url("/static/img/avatar/avatar.png");
+					background-size: cover;
+				}
 
-          &:hover {
-            color: $colorDirectionItems;
-            background-color: $whiteColor;
-            border: 0.2rem solid $colorDirectionItems;
-          }
-        }
-      }
-    }
-  }
+				&__more {
+					margin-left: 0.5rem;
+					border-left: 0.6rem solid transparent;
+					border-right: 0.6rem solid transparent;
+					border-top: 0.6rem solid rgb(0, 120, 224);
+				}
+			}
+
+			// AUTHENTICATE
+			&__authenticate {
+				@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap");
+				@include flex(row, center);
+				font: 500 1.6rem "Work Sans", sans-serif;
+				line-height: 1.6rem;
+				color: $colorDirectionItems;
+
+				&__login {
+					color: $whiteColor;
+					background-color: $colorDirectionItems;
+					border: 0.2rem solid $colorDirectionItems;
+					padding: 0.7rem 2rem;
+					border-radius: 2rem;
+					transition: linear 0.1s;
+
+					&:hover {
+						color: $colorDirectionItems;
+						background-color: $whiteColor;
+						border: 0.2rem solid $colorDirectionItems;
+					}
+				}
+			}
+		}
+	}
 }

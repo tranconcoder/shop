@@ -1,7 +1,10 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
+const http = "http";
+const host = "localhost:3000";
+const domain = `${http}://${host}`;
 
-const General = {
+class General {
 	wait(time) {
 		// authenticate
 		{
@@ -24,7 +27,7 @@ const General = {
 				done();
 			}, time);
 		});
-	},
+	}
 
 	syntaxCheck(value, { requiredCharacter, invalidCharacter }) {
 		// authenticate
@@ -100,7 +103,7 @@ const General = {
 
 			return result;
 		}
-	},
+	}
 
 	onlyHasCharacter(value, validCharacter) {
 		// authenticate
@@ -153,7 +156,7 @@ const General = {
 
 			return invalidCharacter;
 		}
-	},
+	}
 
 	lengthCheck(value, { min, max }) {
 		// return 0: no error;
@@ -216,7 +219,7 @@ const General = {
 			if (max) if (valueLength > max) return 2;
 			return 0;
 		}
-	},
+	}
 
 	gmailCheck(mail) {
 		if (!mail) {
@@ -226,10 +229,14 @@ const General = {
 
 		const gmailSyntaxArray = mail.match(/@gmail.com/g);
 
-		if (!gmailSyntaxArray.length || gmailSyntaxArray.length > 1) {
+		if (gmailSyntaxArray) {
+			if (!gmailSyntaxArray.length || gmailSyntaxArray.length > 1) {
+				return false;
+			}
+
+			return true;
+		} else {
 			return false;
 		}
-
-		return true;
-	},
-};
+	}
+}

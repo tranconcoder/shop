@@ -71,6 +71,7 @@ $warningMessageBorderSize: 0.1rem;
 		&__thumnail {
 			@include position(relative);
 			display: flex;
+			user-select: none;
 
 			&::before {
 				@include size(100%);
@@ -462,6 +463,28 @@ $warningMessageBorderSize: 0.1rem;
 		.input-element {
 			border-color: red !important;
 			color: red;
+			animation: inputPlaceHolderFail ease 0.2s;
+
+			@keyframes inputPlaceHolderFail {
+				0% {
+					&:focus ~ .input-place-holder,
+					&:not(:placeholder-shown) ~ .input-place-holder {
+						padding: 0 1rem;
+					}
+				}
+				50% {
+					&:focus ~ .input-place-holder,
+					&:not(:placeholder-shown) ~ .input-place-holder {
+						padding: 0 2rem;
+					}
+				}
+				100% {
+					&:focus ~ .input-place-holder,
+					&:not(:placeholder-shown) ~ .input-place-holder {
+						padding: 0 1rem;
+					}
+				}
+			}
 		}
 
 		.input-place-holder {
