@@ -1,0 +1,12 @@
+@import "../general/general.scss", "../general/variables", "../general/mixin";
+
+.body-container {
+	@include size(false, 10rem);
+	padding: 0;
+
+	.slide-0 {
+		@include size(100%, false);
+		margin: 0;
+		background-color: $whiteColor;
+	}
+}

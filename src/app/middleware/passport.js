@@ -2,11 +2,10 @@ import { Router } from "express";
 import passportLocal from "passport-local";
 import session from "express-session";
 import passport from "passport";
+import General from "./base.js";
 
 const LocalStrategy = passportLocal.Strategy;
 const router = Router();
-const generalTime = new Date(Date.now());
-generalTime.toLocaleTimeString("ICT");
 
 // models
 import authDB from "../../resources/model/authenticate.js";
@@ -23,7 +22,7 @@ router.use(passport.session());
 
 passport.use(
 	new LocalStrategy(function (username, password, done) {
-		authDB.findOne({ username }, function (err, user) {
+		authDB.findOne({ username }, async function (err, user) {
 			if (err) {
 				console.log("Error!");
 				return done(err);
@@ -36,7 +35,10 @@ passport.use(
 				console.log("Password couldn't equal!");
 				return done(null, false);
 			}
-			authDB.findByIdAndUpdate(user._id, { lastLoginAt: generalTime });
+			await authDB.findByIdAndUpdate(user._id, {
+				lastLoginAt: General.getLocalTime(),
+			});
+
 			return done(null, user);
 		});
 	})

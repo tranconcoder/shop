@@ -1,8 +1,33 @@
 @import "_variables";
 
 @mixin size($width, $height: $width) {
-	width: $width;
-	height: $height;
+	@if $width != false {
+		width: $width;
+	}
+
+	@if $height != false {
+		height: $height;
+	}
+}
+
+@mixin min-size($minWidth, $minHeight: $minWidth) {
+	@if $minWidth != false {
+		min-width: $minWidth;
+	}
+
+	@if $minHeight != false {
+		min-height: $minHeight;
+	}
+}
+
+@mixin max-size($maxWidth, $maxHeight: $maxWidth) {
+	@if $maxWidth != false {
+		max-width: $maxWidth;
+	}
+
+	@if $maxHeight != false {
+		max-height: $maxHeight;
+	}
 }
 
 @mixin flex(
@@ -31,14 +56,23 @@
 
 @mixin position(
 	$position,
-	$top: unset,
-	$right: unset,
-	$bottom: unset,
-	$left: unset
+	$top: false,
+	$right: false,
+	$bottom: false,
+	$left: false
 ) {
 	position: $position;
-	top: $top;
-	right: $right;
-	bottom: $bottom;
-	left: $left;
+
+	@if $top != false {
+		top: $top;
+	}
+	@if $right != false {
+		right: $right;
+	}
+	@if $bottom != false {
+		bottom: $bottom;
+	}
+	@if $left != false {
+		left: $left;
+	}
 }

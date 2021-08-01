@@ -1,3 +1,5 @@
+"use strict";
+
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 const http = "http";
@@ -238,5 +240,25 @@ class General {
 		} else {
 			return false;
 		}
+	}
+
+	getLocalTime() {
+		const localTime = new Date(Date.now());
+		let localSecond = localTime.getSeconds();
+		let localMilliSecond = localTime.getMilliseconds();
+		let localMinutes = localTime.getMinutes();
+		let localHours = localTime.getHours();
+		let localDate = localTime.getDate();
+		let localMonth = localTime.getMonth() + 1;
+		let localYear = localTime.getFullYear();
+		let localDayOfWeek;
+
+		if (localTime.getDay() === 0) {
+			localDayOfWeek = "CN";
+		} else {
+			localDayOfWeek = `T${localTime.getDay() + 1}`;
+		}
+
+		return `${localHours}:${localMinutes}:${localSecond}:${localMilliSecond} - ${localDayOfWeek} ${localDate}/${localMonth}/${localYear} GMT+7`;
 	}
 }

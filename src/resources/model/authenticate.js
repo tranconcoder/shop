@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
+import General from "../../app/middleware/base.js";
 const { Schema } = mongoose;
-
-const generalTime = new Date(Date.now());
-generalTime.toLocaleTimeString("ICT");
 
 const authenticate = new Schema({
 	firstName: {
@@ -48,17 +46,15 @@ const authenticate = new Schema({
 	},
 	registerAt: {
 		type: String,
-		default: generalTime,
+		default: General.getLocalTime(),
 	},
 	lastLoginAt: {
 		type: String,
-		default: generalTime,
 	},
 	lastChangeProfile: {
 		// prev profile
 		changedAt: {
 			type: String,
-			default: generalTime,
 		},
 		prevProfie: {
 			type: Object,

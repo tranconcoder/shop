@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="/static/css/navBar/navBar.css" />
 
+<div class="navbar-layout"></div>
 <div class="header container-fluid">
 	<div class="nav-bar container-xxl">
 		{{! NAVBAR left }}
@@ -14,15 +15,15 @@
 			{{! DIRECTION }}
 			<ul class="nav-bar__center-container__direction-list">
 				<li class="nav-bar__center-container__direction-list__item on-page">
-					<a href="">Trang Chủ</a>
+					<a href="">Trang chủ</a>
 				</li>
 				<li class="nav-bar__center-container__direction-list__item">
-					<a href="">Sản Phẩm</a>
+					<a href="">Sản phẩm</a>
 				</li>
 				<li class="nav-bar__center-container__direction-list__item">
-					<a href="">Giỏ Hàng</a></li>
+					<a href="">Giỏ hàng</a></li>
 				<li class="nav-bar__center-container__direction-list__item">
-					<a href="">Hỗ Trợ</a>
+					<a href="">Hỗ trợ</a>
 				</li>
 			</ul>
 		</div>
@@ -30,13 +31,136 @@
 		{{! NAVBAR right }}
 		<div class="nav-bar__right-container">
 			{{#if username}}
-				{{! AVATAR [logged in] }}
+				{{! [logged in] }}
+				{{! STATUS BAR }}
+				<div class="nav-bar__right-container__status-bar">
+					<div class="nav-bar__right-container__status-bar__cart"></div>
+					<div class="nav-bar__right-container__status-bar__notify"></div>
+				</div>
+
+				{{! AVATAR }}
 				<div class="nav-bar__right-container__avatar">
 					<div class="nav-bar__right-container__avatar__image"></div>
-					<div class="nav-bar__right-container__avatar__more"></div>
+					<i
+						class="nav-bar__right-container__avatar__more-icon fas fa-caret-down"
+					></i>
+					{{! PROFILE }}
+					<div class="nav-bar__right-container__avatar__profile">
+						{{! INFO CONTAINER }}
+						<div
+							class="nav-bar__right-container__avatar__profile__infomation"
+						>
+							{{! AVATAR }}
+							<img
+								src="/static/img/avatar/avatar.png"
+								alt="avatar"
+								class="nav-bar__right-container__avatar__profile__infomation__avatar"
+							/>
+							{{! INFO }}
+							<div
+								class="nav-bar__right-container__avatar__profile__infomation__info"
+							>
+								{{! NAME }}
+								<span
+									class="nav-bar__right-container__avatar__profile__infomation__info__name"
+								>
+									<p>{{firstName}} {{lastName}}</p>
+								</span>
+								{{! GMAIL }}
+								<span
+									class="nav-bar__right-container__avatar__profile__infomation__info__gmail"
+								>
+									<p>{{gmail}}</p>
+								</span>
+							</div>
+
+							{{! EDITOR }}
+							<a
+								href=""
+								class="nav-bar__right-container__avatar__profile__infomation__editor"
+							>
+								<div
+									src="/static/svg/navBar/editor-icon.svg"
+									alt=""
+									class="nav-bar__right-container__avatar__profile__infomation__editor-icon"
+								></div>
+							</a>
+						</div>
+
+						{{! TOOLS }}
+						<div class="nav-bar__right-container__avatar__profile__tools">
+
+							{{! MY SELCTION }}
+							<div
+								class="nav-bar__right-container__avatar__profile__tools__my-selection"
+							>
+								<div></div>
+								<p>Giỏ hàng của tôi</p>
+							</div>
+
+							{{! TRANSPORTING }}
+							<div
+								class="nav-bar__right-container__avatar__profile__tools__transporting"
+							>
+								<div></div>
+								<p>Theo dõi đơn hàng</p>
+							</div>
+
+							{{! SELL PRODUCTS }}
+							<div
+								class="nav-bar__right-container__avatar__profile__tools__sell-products"
+							>
+								<div></div>
+								<p>Đăng sản phẩm</p>
+							</div>
+						</div>
+
+						{{! PROFILE SETTING }}
+						<div
+							class="nav-bar__right-container__avatar__profile__profile-settings"
+						>
+							{{! CHANGE INFO }}
+							<div
+								class="nav-bar__right-container__avatar__profile__profile-settings__change-info"
+							>
+								<div></div>
+								<p>Sửa thông tin cá nhân</p>
+							</div>
+
+							{{! SETTING }}
+							<div
+								class="nav-bar__right-container__avatar__profile__profile-settings__settings"
+							>
+								<div></div>
+								<p>Cài đặt</p>
+							</div>
+						</div>
+
+						{{! OTHERS }}
+						<div
+							class="nav-bar__right-container__avatar__profile__others"
+						>
+							{{! HELP }}
+							<div
+								class="nav-bar__right-container__avatar__profile__others__help"
+							>
+								<div></div>
+								<p>Trợ giúp</p>
+							</div>
+
+							{{! LOGOUT }}
+							<div
+								class="nav-bar__right-container__avatar__profile__others__logout"
+							>
+								<div></div>
+								<p>Thoát tài khoản</p>
+							</div>
+						</div>
+					</div>
 				</div>
 			{{else}}
-				{{! AUTHENTICATE [not logged in] }}
+				{{! [not logged in] }}
+				{{! AUTHENTICATE }}
 				<div class="nav-bar__right-container__authenticate">
 					<a
 						href="/authenticate"
@@ -47,3 +171,6 @@
 		</div>
 	</div>
 </div>
+
+<script src="/static/js/navBar/uxUi.js"></script>
+<script src="/static/js/navBar/main.js"></script>

@@ -1,51 +1,46 @@
 import passport from "../middleware/passport.js";
+import authDB from "../../resources/model/authenticate.js";
 
 class Auth {
 	async register(req, res, next) {
-		// authenticate
-		await {};
+		// create account object to save on AuthDB
+		const body = await req.body;
+		const accountInfomation = await {
+			firstName: body.firstName,
+			lastName: body.lastName,
+			username: body.username,
+			password: body.password,
+			gmail: body.gmail,
+			address: body.address,
+		};
 
-		// process
-		{
-			// create account object to save on AuthDB
-			const body = await req.body;
-			const accountInfomation = await {
-				firstName: body.firstName,
-				lastName: body.lastName,
-				username: body.username,
-				password: body.password,
-				gmail: body.gmail,
-				address: body.address,
-			};
+		// check username [exits?]
+		const usernameIsExist = await authDB.exists({
+			username: body.username,
+		});
 
-			// check username [exits?]
-			const usernameIsExist = await authDB.exists({
-				username: body.username,
-			});
+		if (usernameIsExist) {
+			res.send("Username is existed!");
+			return;
+		}
 
-			if (usernameIsExist) {
-				res.send("Username is existed!");
+		// check all child [has value?]
+		for (const objectKey in accountInfomation) {
+			if (!accountInfomation[objectKey]) {
+				res.send("Many info is not exist!");
 				return;
 			}
-
-			// check all child [has value?]
-			for (const objectKey in accountInfomation) {
-				if (!accountInfomation[objectKey]) {
-					res.send("Many info is not exist!");
-					return;
-				}
-			}
-
-			// create account on AuthDB
-			authDB
-				.create(accountInfomation)
-				.then(() => {
-					res.redirect("/");
-				})
-				.catch(() => {
-					res.send("Error regsiter!");
-				});
 		}
+
+		// create account on AuthDB
+		authDB
+			.create(accountInfomation)
+			.then(() => {
+				res.redirect("/");
+			})
+			.catch(() => {
+				res.send("Error regsiter!");
+			});
 	}
 
 	authPage(req, res) {

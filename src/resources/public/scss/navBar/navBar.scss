@@ -7,6 +7,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Exo:wght@300;400;500;600;700;800&display=swap");
 // "Kanit"
 @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500&display=swap");
+// 'Baloo Chettan 2', cursive;
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@400;500&display=swap");
+// 'Asap', sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Asap:wght@400;500;600;700&display=swap");
+// 'Rubik', sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap");
+// 'Noto Sans JP', sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap");
 
 // VARIABLES
 $colorGradient0: rgb(34, 64, 199);
@@ -14,12 +22,21 @@ $colorGradient1: rgb(1, 153, 255);
 $colorDirectionItems: #2668d9;
 $colorHoverBar: rgba(34, 64, 199, 0.5);
 $itemSeperate: 2rem;
+$avatarPrimaryColor: #ccc;
+$avatarPrimaryColorHover: rgb(0, 98, 255);
+$avatarSize: 4.2rem;
+$avatarMoreProfileSeperateNavbar: 0.5rem;
+$avatarMoreProfileSeperate: 1.4rem;
+
+.navbar-layout {
+	@include size(100%, $navbarHeight);
+}
 
 .header {
 	@include size(100%, $navbarHeight);
 	@include position(fixed, 0, 0);
 	padding: 0;
-	background-color: transparent;
+	background-color: $whiteColor;
 	box-shadow: 0 0.3rem 1rem 0.1rem rgba(0, 0, 0, 0.2);
 
 	.nav-bar {
@@ -86,22 +103,296 @@ $itemSeperate: 2rem;
 		&__right-container {
 			@include flex(row, center, flex-start);
 
+			// STATUS BAR
+			&__status-bar {
+				@include flex(row, center, center);
+
+				& > * {
+					@include size(5rem);
+					@include position(relative);
+					background-size: 2.4rem;
+					background-position: center;
+					background-repeat: no-repeat;
+					margin-right: 2rem;
+					transition: ease 0.2s;
+
+					&::before {
+						@include size(0rem);
+						@include position(absolute, 50%, 50%);
+						transform: translate(50%, -50%);
+						content: "";
+						display: block;
+						background-color: #ebebeb;
+						z-index: -1;
+						border-radius: 50%;
+						transition: ease 0.2s;
+					}
+
+					&::after {
+						@include size(false, 1.5rem);
+						@include min-size(1rem, false);
+						@include max-size(10rem, false);
+						content: "99+";
+						color: #737373;
+						font: 600 1.3rem "Asap", sans-serif;
+						background-color: #eeeeee;
+						display: block;
+						border-radius: 2rem;
+						box-shadow: 0 0 0 0.15rem $whiteColor;
+						padding: 0rem 0.5rem 0;
+						transition: ease 0.2s;
+					}
+
+					&:hover {
+						cursor: pointer;
+
+						&::before {
+							@include size(4rem);
+						}
+
+						&::after {
+							color: #332900;
+							background-color: #ffdb66;
+						}
+					}
+				}
+
+				&__cart {
+					background-image: url("/static/svg/navBar/cart.svg");
+
+					&::after {
+						@include position(absolute, 0.7rem, false, false, 65%);
+					}
+
+					&:hover {
+						background-image: url("/static/svg/navBar/cart--active.svg");
+					}
+				}
+
+				&__notify {
+					background-image: url("/static/svg/navBar/bell.svg");
+
+					&::after {
+						@include position(absolute, 0.7rem, false, false, 60%);
+					}
+
+					&:hover {
+						background-image: url("/static/svg/navBar/bell--active.svg");
+					}
+				}
+			}
+
 			// AVATAR
 			&__avatar {
 				@include flex(row, center);
+				@include position(relative);
+				transition: ease 0.2s;
+
+				& > * {
+					transition: ease 0.2s;
+				}
+
+				&:hover {
+					cursor: pointer;
+
+					.nav-bar__right-container__avatar__more-icon {
+						color: $avatarPrimaryColorHover;
+					}
+
+					.nav-bar__right-container__avatar__image {
+						box-shadow: 0 0 0 0.2rem $avatarPrimaryColorHover;
+					}
+				}
 
 				&__image {
-					@include size(4.5rem);
+					@include size($avatarSize);
 					border-radius: 50%;
 					background-image: url("/static/img/avatar/avatar.png");
 					background-size: cover;
+					box-shadow: 0 0 0 0.2rem $avatarPrimaryColor;
 				}
 
-				&__more {
-					margin-left: 0.5rem;
-					border-left: 0.6rem solid transparent;
-					border-right: 0.6rem solid transparent;
-					border-top: 0.6rem solid rgb(0, 120, 224);
+				&__more-icon {
+					@include position(absolute, 50%, false, false, 100%);
+					transform: translateY(-50%);
+					margin-left: 0.8rem;
+					font-size: 1.6rem;
+					color: $avatarPrimaryColor;
+
+					&.showed {
+						transform: rotate(180deg) translateY(40%);
+					}
+				}
+
+				&__profile {
+					@include size(30rem, false);
+					@include position(absolute, 100%, 0);
+					@include flex(column, stretch);
+					transform: translateY((($navbarHeight - $avatarSize) / 2))
+						scale(0);
+					box-shadow: 0 0.3rem 1rem 0.3rem rgba(0, 0, 0, 0.1);
+					border-radius: 1.6rem;
+					margin-top: $avatarMoreProfileSeperateNavbar;
+					padding: $avatarMoreProfileSeperate;
+					opacity: 0.2;
+					transition: ease 0.3s;
+					transform-origin: top right;
+					will-change: opacity, transform;
+					background-color: $whiteColor;
+
+					&.showed {
+						transform: translateY(
+								(($navbarHeight - $avatarSize) / 2) +
+									$avatarMoreProfileSeperateNavbar
+							)
+							scale(1);
+						opacity: 1;
+					}
+
+					& > *:not(:first-child) {
+						overflow: hidden;
+						background-color: #f5f5f5;
+						border-radius: 1rem;
+						margin-top: 1.6rem;
+
+						& > * {
+							@include size(false, 4rem);
+							@include flex(row, center);
+							user-select: none;
+
+							&:hover {
+								background-color: rgb(236, 236, 236);
+							}
+
+							& > div {
+								@include size(2rem);
+								margin: 0 2rem 0 1rem;
+								background-size: contain;
+								transition: ease 0.2s;
+							}
+
+							& > p {
+								color: #727272;
+								font: 400 1.4rem "Rubik", sans-serif;
+								margin: 0;
+							}
+						}
+					}
+
+					&__infomation {
+						@include flex(row, center);
+						border-radius: inherit;
+						padding: 0.5rem 0;
+						background-color: transparent;
+
+						&__avatar {
+							@include size(6rem);
+							border-radius: 50%;
+						}
+
+						&__info {
+							@include size(16rem, 6rem);
+							@include flex(column, flex-start, space-evenly);
+							margin: 0 0.5rem;
+
+							&__name,
+							&__gmail {
+								@include size(100%, 45%);
+								@include flex(row, center);
+								padding-left: 0.5rem;
+								border-radius: 0.5rem;
+								background-color: #fafafa;
+								transition: ease 0.3s;
+
+								& > p {
+									font: 400 1.3rem "Rubik", sans-serif;
+									color: #525252;
+									margin: auto 0;
+									transition: ease 0.3s;
+								}
+
+								&:hover {
+									& > p {
+										color: #000000;
+									}
+								}
+							}
+
+							&__gmail {
+								& > p {
+									white-space: nowrap;
+									overflow: hidden;
+									text-overflow: ellipsis;
+								}
+							}
+						}
+
+						&__editor {
+							&-icon {
+								@include size(4rem);
+								background-image: url("/static/svg/navBar/editor-icon.svg");
+								background-size: cover;
+								border-radius: 50%;
+								transition: ease 0.3s;
+
+								&:hover {
+									background-image: url("/static/svg/navBar/editor-icon--active.svg");
+								}
+							}
+						}
+					}
+
+					&__tools {
+						// MY SELECTION
+						&__my-selection {
+							& div {
+								background-image: url("/static/svg/navBar/my-selection.svg");
+							}
+						}
+
+						// TRANSPORTING
+						&__transporting {
+							& div {
+								background-image: url("/static/svg/navBar/transporting.svg");
+							}
+						}
+
+						// SELL PRODUCTS
+						&__sell-products {
+							& div {
+								background-image: url("/static/svg/navBar/sell-products.svg");
+							}
+						}
+					}
+
+					&__profile-settings {
+						&__change-info {
+							& > div {
+								background-image: url("/static/svg/navBar/change-info.svg");
+							}
+						}
+
+						&__settings {
+							& > div {
+								background-image: url("/static/svg/navBar/settings.svg");
+							}
+						}
+					}
+
+					&__others {
+						&__help {
+							& > div {
+								background-image: url("/static/svg/navBar/help.svg");
+							}
+						}
+
+						&__logout {
+							& > div {
+								@include size(2.15rem);
+								background-image: url("/static/svg/navBar/logout.svg");
+							}
+						}
+					}
 				}
 			}
 
