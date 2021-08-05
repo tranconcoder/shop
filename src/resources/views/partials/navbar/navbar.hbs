@@ -1,74 +1,84 @@
-<link rel="stylesheet" href="/static/css/navBar/navBar.css" />
+<link rel="stylesheet" href="/static/css/navbar/navbar.css" />
 
 <div class="navbar-layout"></div>
 <div class="header container-fluid">
-	<div class="nav-bar container-xxl">
+	<div class="navbar container-xxl">
 		{{! NAVBAR left }}
-		<div class="nav-bar__left-container">
-			<div class="nav-bar__left-container__logo">
+		<div class="navbar__left-container">
+			<div class="navbar__left-container__logo">
 				CONSSHOP
 			</div>
 		</div>
 
 		{{! NAVBAR center }}
-		<div class="nav-bar__center-container">
+		<div class="navbar__center-container">
 			{{! DIRECTION }}
-			<ul class="nav-bar__center-container__direction-list">
-				<li class="nav-bar__center-container__direction-list__item on-page">
+			<ul class="navbar__center-container__direction-list">
+				<li class="navbar__center-container__direction-list__item on-page">
+					<div
+						class="navbar__center-container__direction-list__item__on-page-style"
+					>
+						<div
+							class="navbar__center-container__direction-list__item__on-page-style__left"
+						></div>
+						<div
+							class="navbar__center-container__direction-list__item__on-page-style__right"
+						></div>
+					</div>
 					<a href="">Trang chủ</a>
 				</li>
-				<li class="nav-bar__center-container__direction-list__item">
+				<li class="navbar__center-container__direction-list__item">
 					<a href="">Sản phẩm</a>
 				</li>
-				<li class="nav-bar__center-container__direction-list__item">
+				<li class="navbar__center-container__direction-list__item">
 					<a href="">Giỏ hàng</a></li>
-				<li class="nav-bar__center-container__direction-list__item">
+				<li class="navbar__center-container__direction-list__item">
 					<a href="">Hỗ trợ</a>
 				</li>
 			</ul>
 		</div>
 
 		{{! NAVBAR right }}
-		<div class="nav-bar__right-container">
+		<div class="navbar__right-container">
 			{{#if username}}
 				{{! [logged in] }}
 				{{! STATUS BAR }}
-				<div class="nav-bar__right-container__status-bar">
-					<div class="nav-bar__right-container__status-bar__cart"></div>
-					<div class="nav-bar__right-container__status-bar__notify"></div>
+				<div class="navbar__right-container__status-bar">
+					<div class="navbar__right-container__status-bar__cart"></div>
+					<div class="navbar__right-container__status-bar__notify"></div>
 				</div>
 
 				{{! AVATAR }}
-				<div class="nav-bar__right-container__avatar">
-					<div class="nav-bar__right-container__avatar__image"></div>
+				<div class="navbar__right-container__avatar">
+					<div class="navbar__right-container__avatar__image"></div>
 					<i
-						class="nav-bar__right-container__avatar__more-icon fas fa-caret-down"
+						class="navbar__right-container__avatar__more-icon fas fa-caret-down"
 					></i>
 					{{! PROFILE }}
-					<div class="nav-bar__right-container__avatar__profile">
+					<div class="navbar__right-container__avatar__profile">
 						{{! INFO CONTAINER }}
 						<div
-							class="nav-bar__right-container__avatar__profile__infomation"
+							class="navbar__right-container__avatar__profile__infomation"
 						>
 							{{! AVATAR }}
 							<img
 								src="/static/img/avatar/avatar.png"
 								alt="avatar"
-								class="nav-bar__right-container__avatar__profile__infomation__avatar"
+								class="navbar__right-container__avatar__profile__infomation__avatar"
 							/>
 							{{! INFO }}
 							<div
-								class="nav-bar__right-container__avatar__profile__infomation__info"
+								class="navbar__right-container__avatar__profile__infomation__info"
 							>
 								{{! NAME }}
 								<span
-									class="nav-bar__right-container__avatar__profile__infomation__info__name"
+									class="navbar__right-container__avatar__profile__infomation__info__name"
 								>
 									<p>{{firstName}} {{lastName}}</p>
 								</span>
 								{{! GMAIL }}
 								<span
-									class="nav-bar__right-container__avatar__profile__infomation__info__gmail"
+									class="navbar__right-container__avatar__profile__infomation__info__gmail"
 								>
 									<p>{{gmail}}</p>
 								</span>
@@ -77,22 +87,22 @@
 							{{! EDITOR }}
 							<a
 								href=""
-								class="nav-bar__right-container__avatar__profile__infomation__editor"
+								class="navbar__right-container__avatar__profile__infomation__editor"
 							>
 								<div
 									src="/static/svg/navBar/editor-icon.svg"
 									alt=""
-									class="nav-bar__right-container__avatar__profile__infomation__editor-icon"
+									class="navbar__right-container__avatar__profile__infomation__editor-icon"
 								></div>
 							</a>
 						</div>
 
 						{{! TOOLS }}
-						<div class="nav-bar__right-container__avatar__profile__tools">
+						<div class="navbar__right-container__avatar__profile__tools">
 
 							{{! MY SELCTION }}
 							<div
-								class="nav-bar__right-container__avatar__profile__tools__my-selection"
+								class="navbar__right-container__avatar__profile__tools__my-selection"
 							>
 								<div></div>
 								<p>Giỏ hàng của tôi</p>
@@ -100,7 +110,7 @@
 
 							{{! TRANSPORTING }}
 							<div
-								class="nav-bar__right-container__avatar__profile__tools__transporting"
+								class="navbar__right-container__avatar__profile__tools__transporting"
 							>
 								<div></div>
 								<p>Theo dõi đơn hàng</p>
@@ -108,7 +118,7 @@
 
 							{{! SELL PRODUCTS }}
 							<div
-								class="nav-bar__right-container__avatar__profile__tools__sell-products"
+								class="navbar__right-container__avatar__profile__tools__sell-products"
 							>
 								<div></div>
 								<p>Đăng sản phẩm</p>
@@ -117,11 +127,11 @@
 
 						{{! PROFILE SETTING }}
 						<div
-							class="nav-bar__right-container__avatar__profile__profile-settings"
+							class="navbar__right-container__avatar__profile__profile-settings"
 						>
 							{{! CHANGE INFO }}
 							<div
-								class="nav-bar__right-container__avatar__profile__profile-settings__change-info"
+								class="navbar__right-container__avatar__profile__profile-settings__change-info"
 							>
 								<div></div>
 								<p>Sửa thông tin cá nhân</p>
@@ -129,7 +139,7 @@
 
 							{{! SETTING }}
 							<div
-								class="nav-bar__right-container__avatar__profile__profile-settings__settings"
+								class="navbar__right-container__avatar__profile__profile-settings__settings"
 							>
 								<div></div>
 								<p>Cài đặt</p>
@@ -137,12 +147,10 @@
 						</div>
 
 						{{! OTHERS }}
-						<div
-							class="nav-bar__right-container__avatar__profile__others"
-						>
+						<div class="navbar__right-container__avatar__profile__others">
 							{{! HELP }}
 							<div
-								class="nav-bar__right-container__avatar__profile__others__help"
+								class="navbar__right-container__avatar__profile__others__help"
 							>
 								<div></div>
 								<p>Trợ giúp</p>
@@ -150,7 +158,7 @@
 
 							{{! LOGOUT }}
 							<div
-								class="nav-bar__right-container__avatar__profile__others__logout"
+								class="navbar__right-container__avatar__profile__others__logout"
 							>
 								<div></div>
 								<p>Thoát tài khoản</p>
@@ -161,16 +169,16 @@
 			{{else}}
 				{{! [not logged in] }}
 				{{! AUTHENTICATE }}
-				<div class="nav-bar__right-container__authenticate">
+				<div class="navbar__right-container__authenticate">
 					<a
 						href="/authenticate"
-						class="nav-bar__right-container__authenticate__login"
-					>Đăng Nhập</a>
+						class="navbar__right-container__authenticate__login"
+					>Đăng nhập</a>
 				</div>
 			{{/if}}
 		</div>
 	</div>
 </div>
 
-<script src="/static/js/navBar/uxUi.js"></script>
-<script src="/static/js/navBar/main.js"></script>
+<script src="/static/js/navbar/uxUi.js"></script>
+<script src="/static/js/navbar/main.js"></script>

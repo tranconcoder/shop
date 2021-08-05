@@ -83,3 +83,32 @@ for (const index in googleMethods) {
 		});
 	});
 }
+
+//
+// show and hide password button
+//
+(function showAndHidePasswordButton() {
+	const inputElements = [$("#logPassword"), $("#regPassword")];
+	const showAndHideBtns = [
+		$("#log-show-and-hide-password"),
+		$("#reg-show-and-hide-password"),
+	];
+	const showAndHideBtnIcons = {
+		show: "fas fa-eye",
+		hide: "fas fa-eye-slash",
+	};
+
+	for (let index = 0; index < inputElements.length; index++) {
+		showAndHideBtns[index].addEventListener("click", (e) => {
+			const inputType = inputElements[index].getAttribute("type");
+
+			if (inputType === "password") {
+				inputElements[index].setAttribute("type", "text");
+				e.target.className = showAndHideBtnIcons.hide;
+			} else {
+				inputElements[index].setAttribute("type", "password");
+				e.target.className = showAndHideBtnIcons.show;
+			}
+		});
+	}
+})();

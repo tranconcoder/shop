@@ -46,6 +46,11 @@ class Auth {
 	authPage(req, res) {
 		res.render("pages/authPage/auth");
 	}
+
+	async logout(req, res, next) {
+		req.logout();
+		res.redirect("/authenticate");
+	}
 }
 
 export default new Auth();

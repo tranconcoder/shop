@@ -285,7 +285,22 @@ $warningMessageBorderSize: 0.1rem;
 					}
 
 					&__password-container {
+						@include position(relative);
 						margin-top: $inputSeperate;
+
+						.show-and-hide-log-password {
+							@include position(absolute, 50%, 0);
+							color: rgb(172, 172, 172);
+							font-size: 1.6rem;
+							transform: translateY(-50%);
+							transition: all ease 0.5s;
+							padding: 1rem;
+
+							&:hover {
+								color: rgb(117, 117, 117);
+								cursor: pointer;
+							}
+						}
 					}
 				}
 
@@ -490,6 +505,10 @@ $warningMessageBorderSize: 0.1rem;
 		.input-place-holder {
 			color: red !important;
 		}
+
+		i[desc="show-and-hide-password"] {
+			color: red !important;
+		}
 	}
 
 	.input-element {
@@ -508,6 +527,14 @@ $warningMessageBorderSize: 0.1rem;
 			color: rgb(90, 90, 90);
 			padding: 0 1rem;
 			transform: translate(1rem, -2.8rem);
+		}
+
+		&:placeholder-shown ~ i[desc="show-and-hide-password"] {
+			display: none;
+		}
+
+		&:focus ~ i[desc="show-and-hide-password"] {
+			color: rgb(0, 98, 255);
 		}
 
 		&:focus ~ .input-place-holder {
@@ -540,6 +567,17 @@ $warningMessageBorderSize: 0.1rem;
 
 		i {
 			margin-right: 0.5rem;
+		}
+	}
+
+	i[desc="show-and-hide-password"] {
+		@include position(absolute, 50%, 0);
+		transform: translateY(-50%);
+		padding: 1rem 1.5rem;
+		color: rgb(109, 109, 109);
+
+		&:hover {
+			cursor: pointer;
 		}
 	}
 }

@@ -205,7 +205,6 @@ $("#logUsername").addEventListener("focusout", (e) => {
 
 // password
 const logPasswordOption = {
-	...syntaxCheckOption,
 	toastMessage: {
 		name: "logPasswordToastMessage",
 		style: "error",

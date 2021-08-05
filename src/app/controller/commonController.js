@@ -9,10 +9,10 @@ class Common {
 					address: req.user.address,
 					passwordLength: req.user.password.length,
 					avatar: req.user.hasAvatar,
-					navBar: true,
+					navbar: true,
 			  }
 			: {
-					navBar: true,
+					navbar: true,
 			  };
 
 		res.render("pages/homePage/home", option);

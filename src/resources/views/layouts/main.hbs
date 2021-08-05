@@ -15,15 +15,19 @@
 <body>
 
    {{!-- Header Partial --}}
-   {{#if navBar}}
-      {{> navbar/navbar}}
+   {{#if navbar}}
+      <div class="navbar-container">
+         {{> navbar/navbar}}
+      </div>
    {{/if}}
 
    {{!-- Toast Message Partial --}}
    {{> general/toastMessage/toastMessage}}
 
    {{!-- Body Partial --}}
-   {{{body}}}
+   <div class="body container-xxl p-0">
+      {{{body}}}
+   </div>
 
 </body>
 </html>

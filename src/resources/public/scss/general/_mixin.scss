@@ -10,7 +10,7 @@
 	}
 }
 
-@mixin min-size($minWidth, $minHeight: $minWidth) {
+@mixin minSize($minWidth, $minHeight: $minWidth) {
 	@if $minWidth != false {
 		min-width: $minWidth;
 	}
@@ -20,7 +20,7 @@
 	}
 }
 
-@mixin max-size($maxWidth, $maxHeight: $maxWidth) {
+@mixin maxSize($maxWidth, $maxHeight: $maxWidth) {
 	@if $maxWidth != false {
 		max-width: $maxWidth;
 	}

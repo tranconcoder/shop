@@ -1,12 +1,100 @@
 @import "../general/general.scss", "../general/variables", "../general/mixin";
 
-.body-container {
-	@include size(false, 10rem);
+// font
+//'M PLUS Rounded 1c', sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap");
+// 'Patrick Hand', cursive;
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
+.home-ctn {
 	padding: 0;
 
-	.slide-0 {
-		@include size(100%, false);
-		margin: 0;
-		background-color: $whiteColor;
+	& > * {
+		margin-top: 2rem !important;
+		background-color: rgb(254, 254, 254);
+		border-radius: 1rem;
+		box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+		transition: ease 0.2s;
+		will-change: transform, box-shadow;
+
+		&:hover {
+			box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.4);
+			transform: translateY(-0.2rem);
+		}
+	}
+
+	&__view-box {
+		@include size(90%, 45rem);
+		@include position(relative);
+		@include flex(row, center);
+		background-repeat: no-repeat;
+		background-position: right bottom, left bottom;
+		background-size: contain, cover;
+		margin: 0 auto;
+		overflow: hidden;
+
+		&__content-box {
+			@include size(auto, false);
+			@include flex(column, center, center);
+			margin-left: 25rem;
+			z-index: 2;
+			color: #fff;
+
+			&__title {
+				font: 600 2rem "M PLUS Rounded 1c", sans-serif;
+				text-align: center;
+				margin: 0;
+			}
+
+			&__content {
+				font: 400 1.8rem "Patrick Hand", cursive;
+				line-height: 2.6rem;
+				margin: 0.5rem 0 2rem 0;
+			}
+
+			&__btn {
+				@include size(20rem, 3.4rem);
+				color: #2668d9;
+				background-color: #fff;
+				border-radius: 1rem;
+				font: 700 1.4rem "M PLUS Rounded 1c", sans-serif;
+				border: 0.15rem solid #fff;
+				margin-top: 2rem;
+				transition: all ease 0.3s;
+
+				&:hover {
+					cursor: pointer;
+					color: #fff;
+					background-color: #2668d9;
+					border: 0.15rem solid #5596ff;
+				}
+			}
+		}
+
+		&__vector-image-0 {
+			@include size(25rem);
+			@include position(absolute, false, false, 0, 0rem);
+			object-fit: contain;
+			padding: 0;
+			z-index: 1;
+		}
+
+		&__vector-image-1 {
+			@include size(auto, 100%);
+			@include position(absolute, 0, 0);
+			object-fit: contain;
+			backdrop-filter: blur(0.1rem);
+			padding: 0;
+			z-index: 1;
+		}
+
+		&__background {
+			@include size(100%);
+			@include position(absolute, 0, 0);
+			border-radius: inherit;
+			background-image: url("/static/img/homePage/BG-9.jpg");
+			background-size: cover;
+			background-position: bottom left;
+			z-index: 0;
+		}
 	}
 }

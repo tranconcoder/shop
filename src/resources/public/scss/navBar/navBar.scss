@@ -37,9 +37,9 @@ $avatarMoreProfileSeperate: 1.4rem;
 	@include position(fixed, 0, 0);
 	padding: 0;
 	background-color: $whiteColor;
-	box-shadow: 0 0.3rem 1rem 0.1rem rgba(0, 0, 0, 0.2);
+	box-shadow: 0 0.3rem 1rem 0.1rem rgba(0, 0, 0, 0.1);
 
-	.nav-bar {
+	.navbar {
 		@include size(100%);
 		@include flex(row, center, space-between);
 		@include position(relative);
@@ -89,11 +89,22 @@ $avatarMoreProfileSeperate: 1.4rem;
 					user-select: none;
 
 					&:hover {
-						color: $colorDirectionItems;
+						color: rgb(0, 110, 255);
+						font-weight: 500;
 					}
 
 					&.on-page {
-						color: $colorDirectionItems;
+						color: #fff;
+						font-weight: 500;
+					}
+
+					&__on-page-style {
+						@include size(calc(100% + 3rem), 85%);
+						@include position(absolute, 0, 50%);
+						z-index: -1;
+						transform: translateX(50%);
+						background-color: #2668d9;
+						border-radius: 0 0 1.4rem 1.4rem;
 					}
 				}
 			}
@@ -130,8 +141,8 @@ $avatarMoreProfileSeperate: 1.4rem;
 
 					&::after {
 						@include size(false, 1.5rem);
-						@include min-size(1rem, false);
-						@include max-size(10rem, false);
+						@include minSize(1rem, false);
+						@include maxSize(10rem, false);
 						content: "99+";
 						color: #737373;
 						font: 600 1.3rem "Asap", sans-serif;
@@ -195,11 +206,11 @@ $avatarMoreProfileSeperate: 1.4rem;
 				&:hover {
 					cursor: pointer;
 
-					.nav-bar__right-container__avatar__more-icon {
+					.navbar__right-container__avatar__more-icon {
 						color: $avatarPrimaryColorHover;
 					}
 
-					.nav-bar__right-container__avatar__image {
+					.navbar__right-container__avatar__image {
 						box-shadow: 0 0 0 0.2rem $avatarPrimaryColorHover;
 					}
 				}
