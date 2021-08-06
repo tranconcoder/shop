@@ -149,19 +149,20 @@ async function inputCheck(
 	}
 }
 
-const syntaxCheckOption = {
-	syntaxCheck: {
-		type: "ACCEPT_CHARACTER",
-		acceptCharacter:
-			"1234567890_.qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMàáảãạăằắẳẵặâầấẩẫậđèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựÀÁẢÃẠĂẰẮẲẴẶÂẦẤẨẪẬĐÈÉẺẼẸÊỀẾỂỄỆÌÍỈĨỊÒÓỎÕỌÔỒỐỔỖỘƠỜỚỞỠỢÙÚỦŨỤƯỪỨỬỮỰ",
-	},
-};
-
 // LOGIN
 (function checkLoginFormHandle() {
 	// common variables
 	{
+		const syntaxCheckOption = {
+			syntaxCheck: {
+				type: "ACCEPT_CHARACTER",
+				acceptCharacter:
+					"1234567890_.qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMàáảãạăằắẳẵặâầấẩẫậđèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựÀÁẢÃẠĂẰẮẲẴẶÂẦẤẨẪẬĐÈÉẺẼẸÊỀẾỂỄỆÌÍỈĨỊÒÓỎÕỌÔỒỐỔỖỘƠỜỚỞỠỢÙÚỦŨỤƯỪỨỬỮỰ",
+			},
+		};
+
 		var submitBtn = $("#logSubmitBtn");
+
 		var logUsernameOption = {
 			...syntaxCheckOption,
 			toastMessage: {
@@ -243,6 +244,14 @@ const syntaxCheckOption = {
 (function checkRegisterFormHandle() {
 	// common variables
 	{
+		const syntaxCheckOption = {
+			syntaxCheck: {
+				type: "ACCEPT_CHARACTER",
+				acceptCharacter:
+					"1234567890_.qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMàáảãạăằắẳẵặâầấẩẫậđèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựÀÁẢÃẠĂẰẮẲẴẶÂẦẤẨẪẬĐÈÉẺẼẸÊỀẾỂỄỆÌÍỈĨỊÒÓỎÕỌÔỒỐỔỖỘƠỜỚỞỠỢÙÚỦŨỤƯỪỨỬỮỰ",
+			},
+		};
+
 		var regFirstNameOption = {
 			...syntaxCheckOption,
 			toastMessage: {
