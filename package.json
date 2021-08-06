@@ -2,7 +2,7 @@
 	"name": "shop",
 	"version": "1.0.0",
 	"description": "",
-	"type": "module",
+	"type": "commonjs",
 	"main": "src/main.js",
 	"scripts": {
 		"start": "nodemon --watch src",

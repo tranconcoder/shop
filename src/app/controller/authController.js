@@ -1,5 +1,5 @@
-import passport from "../middleware/passport.js";
-import authDB from "../../resources/model/authenticate.js";
+const passport = require("../middleware/passport.js");
+const authDB = require("../../resources/model/authenticate.js");
 
 class Auth {
 	async register(req, res, next) {
@@ -53,4 +53,4 @@ class Auth {
 	}
 }
 
-export default new Auth();
+module.exports = new Auth();

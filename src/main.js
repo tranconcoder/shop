@@ -1,13 +1,10 @@
-import express from "express";
-import handlebars from "express-handlebars";
-import fileUpload from "express-fileupload";
-import morgan from "morgan";
-import route from "./route/routeIndex.js";
-import path, { dirname } from "path";
-import { fileURLToPath } from "url";
-import passportUse from "./app/middleware/passport.js";
+const express = require("express");
+const handlebars = require("express-handlebars");
+const fileUpload = require("express-fileupload");
+const morgan = require("morgan");
+const route = require("./route/routeIndex.js");
+const path = require("path");
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = 3000;
 
@@ -31,14 +28,17 @@ app.engine(
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "resources/views"));
 
-//Database
-import dbConnect from "./resources/config/db/index.js";
-dbConnect();
-
 // Routes
 route(app);
 
-// Server listening
-app.listen(port, () => {
-	console.log(`Listening at http://localhost:${port}`);
-});
+// Server start
+(async function start() {
+	//Database
+	const dbConnect = await require("./resources/config/db/index.js");
+	await dbConnect();
+
+	// Server listening
+	app.listen(port, () => {
+		console.log(`Listening at http://localhost:${port}`);
+	});
+})();

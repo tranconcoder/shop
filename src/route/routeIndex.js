@@ -1,9 +1,9 @@
-import auth from "./routeAuth.js";
-import common from "./routeCommon.js";
-import api from "./routeApi.js";
+const auth = require("./routeAuth.js");
+const common = require("./routeCommon.js");
+const api = require("./routeApi.js");
 
-export default function routes(app) {
+module.exports = function routes(app) {
 	app.use("/authenticate", auth);
 	app.use("/api", api);
 	app.use("/", common);
-}
+};

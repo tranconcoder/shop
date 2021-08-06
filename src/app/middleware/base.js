@@ -24,4 +24,4 @@ class General {
 	}
 }
 
-export default new General();
+module.exports = new General();

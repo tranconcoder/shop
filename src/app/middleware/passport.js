@@ -1,14 +1,14 @@
-import { Router } from "express";
-import passportLocal from "passport-local";
-import session from "express-session";
-import passport from "passport";
-import General from "./base.js";
+const { Router } = require("express");
+const passportLocal = require("passport-local");
+const session = require("express-session");
+const passport = require("passport");
+const General = require("./base.js");
 
 const LocalStrategy = passportLocal.Strategy;
 const router = Router();
 
 // models
-import authDB from "../../resources/model/authenticate.js";
+const authDB = require("../../resources/model/authenticate.js");
 
 router.use(
 	session({
@@ -62,4 +62,4 @@ passport.deserializeUser(function (user, done) {
 	});
 });
 
-export default router;
+module.exports = router;

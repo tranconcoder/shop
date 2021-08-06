@@ -3,7 +3,8 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 const http = "http";
-const host = "localhost:3000";
+const port = 3000;
+const host = `localhost:${port}`;
 const domain = `${http}://${host}`;
 
 class General {

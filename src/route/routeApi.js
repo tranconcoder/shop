@@ -1,5 +1,5 @@
-import { Router } from "express";
-import apiController from "../app/controller/apiController.js";
+const { Router } = require("express");
+const apiController = require("../app/controller/apiController.js");
 const router = Router();
 
 router.options(
@@ -7,4 +7,4 @@ router.options(
 	apiController.register.username.check
 );
 
-export default router;
+module.exports = router;

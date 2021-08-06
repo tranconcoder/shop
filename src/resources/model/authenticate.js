@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import General from "../../app/middleware/base.js";
+const mongoose = require("mongoose");
+const General = require("../../app/middleware/base.js");
 const { Schema } = mongoose;
 
 const authenticate = new Schema({
@@ -62,4 +62,4 @@ const authenticate = new Schema({
 	},
 });
 
-export default mongoose.model("Authenticate", authenticate);
+module.exports = mongoose.model("Authenticate", authenticate);

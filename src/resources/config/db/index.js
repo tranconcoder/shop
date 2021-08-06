@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
-export default async function connect() {
+module.exports = async function connect() {
 	try {
 		await mongoose.connect(
 			"mongodb+srv://conkgyt:Anhnam9ce@shopcluter.4kafh.mongodb.net/Shop_DB?retryWrites=true&w=majority",
@@ -15,4 +15,4 @@ export default async function connect() {
 	} catch (error) {
 		console.log("Fail Connection!");
 	}
-}
+};

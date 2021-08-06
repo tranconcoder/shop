@@ -158,358 +158,316 @@ const syntaxCheckOption = {
 };
 
 // LOGIN
-// username
-const logUsernameOption = {
-	...syntaxCheckOption,
-	toastMessage: {
-		name: "toastMessageLogUsername",
-		style: "error",
-		label: "#logUsername",
-	},
-	message: {
-		message0: "Vui lòng nhập Tài khoản!",
-		message1_1: "Tài khoản phải từ 6 ký tự trở lên!",
-		message1_2: "Tài khoản phải ngắn hơn 18 ký tự!",
-		message2_2: "Mục Tài khoản không thể chứa ký tự:  ",
-	},
-	lengthCheck: {
-		min: 6,
-		max: 18,
-	},
-};
-let logUsernameStatus = 0;
+(function checkLoginFormHandle() {
+	// common variables
+	{
+		var submitBtn = $("#logSubmitBtn");
+		var logUsernameOption = {
+			...syntaxCheckOption,
+			toastMessage: {
+				name: "toastMessageLogUsername",
+				style: "error",
+				label: "#logUsername",
+			},
+			message: {
+				message0: "Vui lòng nhập Tài khoản!",
+				message1_1: "Tài khoản phải từ 6 ký tự trở lên!",
+				message1_2: "Tài khoản phải ngắn hơn 18 ký tự!",
+				message2_2: "Mục Tài khoản không thể chứa ký tự:  ",
+			},
+			lengthCheck: {
+				min: 6,
+				max: 18,
+			},
+		};
 
-$("#logUsername").addEventListener("input", async (e) => {
-	logUsernameStatus++;
-
-	const currentStatus = logUsernameStatus;
-
-	await General.prototype.wait(500);
-
-	if (currentStatus === logUsernameStatus) {
-		inputCheck(
-			"#logUsername",
-			".login-form__input-container__username-container",
-			logUsernameOption
-		);
+		var logPasswordOption = {
+			toastMessage: {
+				name: "logPasswordToastMessage",
+				style: "error",
+				label: "#logPassword",
+			},
+			message: {
+				message0: "Vui lòng nhập Mật khẩu!",
+			},
+		};
 	}
-});
 
-$("#logUsername").addEventListener("focusout", (e) => {
-	inputCheck(
-		"#logUsername",
-		".login-form__input-container__username-container",
-		logUsernameOption
-	);
-});
+	// handle focusout event [username]
+	{
+		const usernameInput = $("#logUsername");
 
-// password
-const logPasswordOption = {
-	toastMessage: {
-		name: "logPasswordToastMessage",
-		style: "error",
-		label: "#logPassword",
-	},
-	message: {
-		message0: "Vui lòng nhập Mật khẩu!",
-	},
-};
-let logPasswordStatus = 0;
+		function checkUsernameLogHandle(e) {
+			return inputCheck(
+				"#logUsername",
+				"#logUsernameContainer",
+				logUsernameOption
+			);
+		}
 
-$("#logPassword").addEventListener("input", async (e) => {
-	logPasswordStatus++;
-
-	const currentStatus = logPasswordStatus;
-
-	await General.prototype.wait(500);
-
-	if (currentStatus === logPasswordStatus) {
-		inputCheck("#logPassword", "#logPasswordContainer", logPasswordOption);
+		usernameInput.addEventListener("focusout", checkUsernameLogHandle);
 	}
-});
 
-$("#logPassword").addEventListener("focusout", (e) => {
-	inputCheck("#logPassword", "#logPasswordContainer", logPasswordOption);
-});
+	// handle focusout event [password]
+	{
+		const passwordInput = $("#logPassword");
 
-// Submit
-$("#logSubmitBtn").addEventListener("click", async (e) => {
-	e.preventDefault();
+		function checkPasswordLogHandle(e) {
+			return inputCheck(
+				"#logPassword",
+				"#logPasswordContainer",
+				logPasswordOption
+			);
+		}
 
-	const logUsernameCheckResult = await inputCheck(
-		"#logUsername",
-		"#logUsernameContainer",
-		logUsernameOption
-	);
-
-	const logPasswordCheckResult = await inputCheck(
-		"#logPassword",
-		"#logPasswordContainer",
-		logPasswordOption
-	);
-
-	if (logUsernameCheckResult && logPasswordCheckResult) {
-		$(".login-form").submit();
+		passwordInput.addEventListener("focusout", checkPasswordLogHandle);
 	}
-});
+
+	// handle click event
+	{
+		submitBtn.addEventListener("click", async (e) => {
+			e.preventDefault();
+
+			const loginForm = $(".login-form");
+			const logUsernameCheckResult = await checkUsernameLogHandle();
+			const logPasswordCheckResult = await checkPasswordLogHandle();
+
+			if (logUsernameCheckResult && logPasswordCheckResult) {
+				loginForm.submit();
+			}
+		});
+	}
+})();
 
 // REGISTER
-// first name check
-const regFirstNameOption = {
-	...syntaxCheckOption,
-	toastMessage: {
-		style: "error",
-		name: "toastMessageRegFirstName",
-		label: "#regFirstName",
-	},
-	lengthCheck: {
-		max: 7,
-	},
-	message: {
-		message0: "Vui lòng nhập 'Họ'!",
-		message1_2: "Mục 'Họ' phải ngắn hơn 7 ký tự!",
-		message2_2: "Mục 'Họ' không thể chứa ký tự:",
-	},
-};
-let regFirstNameStatus = 0;
+(function checkRegisterFormHandle() {
+	// common variables
+	{
+		var regFirstNameOption = {
+			...syntaxCheckOption,
+			toastMessage: {
+				style: "error",
+				name: "toastMessageRegFirstName",
+				label: "#regFirstName",
+			},
+			lengthCheck: {
+				max: 7,
+			},
+			message: {
+				message0: "Vui lòng nhập Họ!",
+				message1_2: "Mục Họ phải ngắn hơn 7 ký tự!",
+				message2_2: "Mục Họ không thể chứa ký tự:",
+			},
+		};
 
-$("#regFirstName").addEventListener("input", async (e) => {
-	regFirstNameStatus++;
+		var regLastNameOption = {
+			...syntaxCheckOption,
+			toastMessage: {
+				style: "error",
+				name: "toastMessageRegLastName",
+				label: "#regLastName",
+			},
+			lengthCheck: {
+				max: 7,
+			},
+			message: {
+				message0: "Vui lòng nhập Tên!",
+				message1_2: "Mục Tên phải ngắn hơn 7 ký tự!",
+				message2_2: "MụcTên không thể chứa ký tự: ",
+			},
+		};
 
-	const currentStatus = regFirstNameStatus;
+		var regUsernameOption = {
+			toastMessage: {
+				style: "error",
+				name: "regUsernameToastMessage",
+				label: "#regUsername",
+			},
+			syntaxCheck: {
+				type: "ACCEPT_CHARACTER",
+				acceptCharacter:
+					"1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM",
+			},
+			lengthCheck: {
+				min: 6,
+				max: 18,
+			},
+			fetchAPI: {
+				api: `${domain}/api/register/username/check`,
+				method: "OPTIONS",
+			},
+			message: {
+				message0: "Vui lòng nhập Tài khoản đăng ký!",
+				message1_1: "Tài khoản đăng ký phải từ 6 ký tự trở lên!",
+				message1_2: "Tài khoản đăng ký không thể dài hơn 18 ký tự!",
+				message2_2: "Tài khoản đăng ký không thể chứa ký tự:  ",
+				message3: "Tài khoản đăng ký đã được sử dụng!",
+			},
+		};
 
-	await General.prototype.wait(400);
+		var regPasswordOption = {
+			toastMessage: {
+				style: "error",
+				name: "regPasswordToastMessage",
+				label: "#regPassword",
+			},
+			message: {
+				message0: "Vui lòng nhập Mật khẩu đăng ký!",
+				message1_1: "Mật khẩu đăng ký phải từ 8 ký tự trở lên!",
+				message1_2: "Mật khẩu đăng ký không thể dài hơn 24 ký tự!",
+				message2_2: "Mật khẩu đăng ký không thể chứa ký tự:   ",
+			},
+			lengthCheck: {
+				min: 8,
+				max: 24,
+			},
+			syntaxCheck: {
+				type: "ACCEPT_CHARACTER",
+				acceptCharacter:
+					"1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM",
+			},
+		};
 
-	if (currentStatus === regFirstNameStatus) {
-		inputCheck("#regFirstName", "#regFirstNameContainer", regFirstNameOption);
+		var regGmailOption = {
+			toastMessage: {
+				style: "error",
+				name: "regGmailToastMessage",
+				label: "#regGmail",
+			},
+			lengthCheck: {
+				min: 11,
+			},
+			syntaxCheck: {
+				type: "GMAIL",
+			},
+			message: {
+				message0: "Vui lòng nhập Địa chỉ Gmail!",
+				message1_1: "Địa chỉ Gmail phải từ 11 ký tự trở lên!",
+				message2_1: "Địa chỉ Gmail không đúng định dạng!",
+			},
+		};
+
+		var regAddressOption = {
+			toastMessage: {
+				style: "error",
+				name: "regAddressToastMessage",
+				label: "#regAddress",
+			},
+			message: {
+				message0: "Vui lòng nhập Địa chỉ giao hàng!",
+			},
+		};
 	}
-});
 
-$("#regFirstName").addEventListener("focusout", (e) => {
-	inputCheck("#regFirstName", "#regFirstNameContainer", regFirstNameOption);
-});
-
-// last name check
-const regLastNameOtion = {
-	...syntaxCheckOption,
-	toastMessage: {
-		style: "error",
-		name: "toastMessageRegLastName",
-		label: "#regLastName",
-	},
-	lengthCheck: {
-		max: 7,
-	},
-	message: {
-		message0: "Vui lòng nhập 'Tên'!",
-		message1_2: "Mục 'Tên' phải ngắn hơn 7 ký tự!",
-		message2_2: "Mục'Tên' không thể chứa ký tự: ",
-	},
-};
-let regLastNameStatus = 0;
-
-$("#regLastName").addEventListener("input", async (e) => {
-	regLastNameStatus++;
-
-	const currentStatus = regLastNameStatus;
-
-	await General.prototype.wait(500);
-
-	if (currentStatus === regLastNameStatus) {
-		inputCheck("#regLastName", "#regLastNameContainer", regLastNameOtion);
+	// handle focusout event [first name]
+	{
+		const firstNameInput = $("#regFirstName");
+		function regFirstNameCheckHandle(e) {
+			return inputCheck(
+				"#regFirstName",
+				"#regFirstNameContainer",
+				regFirstNameOption
+			);
+		}
+		firstNameInput.addEventListener("focusout", regFirstNameCheckHandle);
 	}
-});
 
-$("#regLastName").addEventListener("focusout", (e) => {
-	inputCheck("#regLastName", "#regLastNameContainer", regLastNameOtion);
-});
+	// handle focusout event [last name]
+	{
+		const lastNameInput = $("#regLastName");
+		function regLastNameCheckHandle(e) {
+			return inputCheck(
+				"#regLastName",
+				"#regLastNameContainer",
+				regLastNameOption
+			);
+		}
 
-// username check
-const regUsernameOption = {
-	toastMessage: {
-		style: "error",
-		name: "regUsernameToastMessage",
-		label: "#regUsername",
-	},
-	syntaxCheck: {
-		type: "ACCEPT_CHARACTER",
-		acceptCharacter:
-			"1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM",
-	},
-	lengthCheck: {
-		min: 6,
-		max: 18,
-	},
-	fetchAPI: {
-		api: `${domain}/api/register/username/check`,
-		method: "OPTIONS",
-	},
-	message: {
-		message0: "Vui lòng nhập 'Tài Khoản Đăng ký'!",
-		message1_1: "'Tài Khoản Đăng ký' phải từ 6 ký tự trở lên!",
-		message1_2: "'Tài Khoản Đăng ký' không thể dài hơn 18 ký tự!",
-		message2_2: "'Tài Khoản Đăng ký' không thể chứa ký tự:  ",
-		message3: "'Tài Khoản Đăng ký' đã được sử dụng!",
-	},
-};
-let regUsernameStatus = 0;
-
-$("#regUsername").addEventListener("input", async (e) => {
-	regUsernameStatus++;
-
-	const currentStatus = regUsernameStatus;
-
-	await General.prototype.wait(500);
-
-	// will check
-	if (currentStatus === regUsernameStatus) {
-		regUsernameOption.fetchAPI.body = { username: e.target.value };
-		inputCheck("#regUsername", "#regUsernameContainer", regUsernameOption);
+		lastNameInput.addEventListener("focusout", regLastNameCheckHandle);
 	}
-});
 
-$("#regUsername").addEventListener("focusout", (e) => {
-	regUsernameOption.fetchAPI.body = { username: e.target.value };
-	inputCheck("#regUsername", "#regUsernameContainer", regUsernameOption);
-});
+	// handle focusout event [username]
+	{
+		const usernameInput = $("#regUsername");
+		function regUsernameCheckHandle(e) {
+			// get username to check in db
+			regUsernameOption.fetchAPI.body = {
+				username: usernameInput.value,
+			};
 
-// password
-const regPasswordOption = {
-	toastMessage: {
-		style: "error",
-		name: "regPasswordToastMessage",
-		label: "#regPassword",
-	},
-	message: {
-		message0: "Vui lòng nhập 'Mật Khẩu Đăng Ký'!",
-		message1_1: "'Mật Khẩu Đăng Ký' phải từ 8 ký tự trở lên!",
-		message1_2: "'Mật Khẩu Đăng Ký' không thể dài hơn 24 ký tự!",
-		message2_2: "'Mật Khẩu Đăng Ký' không thể chứa ký tự:   ",
-	},
-	lengthCheck: {
-		min: 8,
-		max: 24,
-	},
-	syntaxCheck: {
-		type: "ACCEPT_CHARACTER",
-		acceptCharacter:
-			"1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM",
-	},
-};
-let regPasswordStatus = 0;
+			return inputCheck(
+				"#regUsername",
+				"#regUsernameContainer",
+				regUsernameOption
+			);
+		}
 
-$("#regPassword").addEventListener("input", async (e) => {
-	regPasswordStatus++;
-	const currentStatus = regPasswordStatus;
-
-	await General.prototype.wait(500);
-
-	if (regPasswordStatus === currentStatus) {
-		inputCheck("#regPassword", "#regPasswordContainer", regPasswordOption);
+		usernameInput.addEventListener("focusout", regUsernameCheckHandle);
 	}
-});
 
-$("#regPassword").addEventListener("focusout", (e) => {
-	inputCheck("#regPassword", "#regPasswordContainer", regPasswordOption);
-});
+	// handle focusout event [password]
+	{
+		const passwordInput = $("#regPassword");
+		function regPasswordCheckHandle(e) {
+			return inputCheck(
+				"#regPassword",
+				"#regPasswordContainer",
+				regPasswordOption
+			);
+		}
 
-// gmail
-const regGmailOption = {
-	toastMessage: {
-		style: "error",
-		name: "regGmailToastMessage",
-		label: "#regGmail",
-	},
-	lengthCheck: {
-		min: 11,
-	},
-	syntaxCheck: {
-		type: "GMAIL",
-	},
-	message: {
-		message0: "Vui lòng nhập 'Địa Chỉ Gmail'!",
-		message1_1: "'Địa Chỉ Gmail' phải từ 11 ký tự trở lên!",
-		message2_1: "'Địa Chỉ Gmail' không đúng định dạng!",
-	},
-};
-let regGmailStatus = 0;
-
-$("#regGmail").addEventListener("input", async (e) => {
-	regGmailStatus++;
-	const currentStatus = regGmailStatus;
-
-	await General.prototype.wait(500);
-
-	if (currentStatus === regGmailStatus) {
-		inputCheck("#regGmail", "#regGmailContainer", regGmailOption);
+		passwordInput.addEventListener("focusout", regPasswordCheckHandle);
 	}
-});
 
-$("#regGmail").addEventListener("focusout", (e) => {
-	inputCheck("#regGmail", "#regGmailContainer", regGmailOption);
-});
+	// handle focusout event [gmail]
+	{
+		const gmailInput = $("#regGmail");
+		function regGmailCheckHandle(e) {
+			return inputCheck("#regGmail", "#regGmailContainer", regGmailOption);
+		}
 
-// address
-const regAddressOption = {
-	toastMessage: {
-		style: "error",
-		name: "regAddressToastMessage",
-		label: "#regAddress",
-	},
-	message: {
-		message0: "Vui lòng điền 'Địa Chỉ Giao Hàng'!",
-	},
-};
-
-// submit
-$(".register-form__submit-btn").addEventListener("click", async (e) => {
-	e.preventDefault();
-
-	// fist name check result
-	const regFirstNameCheckResult = await inputCheck(
-		"#regFirstName",
-		"#regFirstNameContainer",
-		regFirstNameOption
-	);
-	// last name check result
-	const regLastNameCheckResult = await inputCheck(
-		"#regLastName",
-		"#regLastNameContainer",
-		regLastNameOtion
-	);
-	// username check result
-	const regUsernameCheckResult = await inputCheck(
-		"#regUsername",
-		"#regUsernameContainer",
-		regUsernameOption
-	);
-	// password check result
-	const regPasswordCheckResult = await inputCheck(
-		"#regPassword",
-		"#regPasswordContainer",
-		regPasswordOption
-	);
-	// gmail check result
-	const regGmailCheckResult = await inputCheck(
-		"#regGmail",
-		"#regGmailContainer",
-		regGmailOption
-	);
-	// address check result
-	const regAddressCheckResult = await inputCheck(
-		"#regAddress",
-		"#regAddressContainer",
-		regAddressOption
-	);
-
-	if (
-		regFirstNameCheckResult &&
-		regLastNameCheckResult &&
-		regUsernameCheckResult &&
-		regPasswordCheckResult &&
-		regGmailCheckResult &&
-		regAddressCheckResult
-	) {
-		$(".register-form").submit();
+		gmailInput.addEventListener("focusout", regGmailCheckHandle);
 	}
-});
+
+	// handle focusout event [address]
+	{
+		const addressInput = $("#regAddress");
+		function regAddressCheckHandle(e) {
+			return inputCheck(
+				"#regAddress",
+				"#regAddressContainer",
+				regAddressOption
+			);
+		}
+
+		addressInput.addEventListener("focusout", regAddressCheckHandle);
+	}
+
+	// handle submit event
+	{
+		const regSubmitBtn = $(".register-form__submit-btn");
+
+		regSubmitBtn.addEventListener("click", async (e) => {
+			e.preventDefault();
+
+			const registerForm = $(".register-form");
+			const regFirstNameCheckResult = await regFirstNameCheckHandle();
+			const regLastNameCheckResult = await regLastNameCheckHandle();
+			const regUsernameCheckResult = await regUsernameCheckHandle();
+			const regPasswordCheckResult = await regPasswordCheckHandle();
+			const regGmailCheckResult = await regGmailCheckHandle();
+			const regAddressCheckResult = await regAddressCheckHandle();
+
+			if (
+				regFirstNameCheckResult &&
+				regLastNameCheckResult &&
+				regUsernameCheckResult &&
+				regPasswordCheckResult &&
+				regGmailCheckResult &&
+				regAddressCheckResult
+			) {
+				registerForm.submit();
+			}
+		});
+	}
+})();

@@ -1,4 +1,4 @@
-import authDB from "../../resources/model/authenticate.js";
+const authDB = require("../../resources/model/authenticate.js");
 
 class Api {
 	register = {
@@ -8,11 +8,14 @@ class Api {
 					username: req.body.username,
 				});
 
-				if (usernameIsExist) res.json(false);
-				else res.json(true);
+				if (usernameIsExist) {
+					res.json(false);
+				} else {
+					res.json(true);
+				}
 			},
 		},
 	};
 }
 
-export default new Api();
+module.exports = new Api();
