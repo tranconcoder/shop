@@ -63,7 +63,6 @@ General.prototype.createToastMessage = (
 				display: "flex",
 				animation: "showCloseAllToastMessageButton ease 0.6s",
 			};
-
 			Object.assign(closeAllToastMessageBtn.style, showCssStyle);
 		}
 
@@ -73,7 +72,6 @@ General.prototype.createToastMessage = (
 				display: "none",
 				animation: "hideCloseAllToastMessageButton ease 0.6s",
 			};
-
 			Object.assign(closeAllToastMessageBtn.style, hideCssStyle);
 		}
 
@@ -84,14 +82,28 @@ General.prototype.createToastMessage = (
 		}
 	}
 
+	// set visibility of toast message container to hidden if don't have a toast message item
+	function setVisibilityOfToastMessageContainer() {
+		const toastMessageContainer = $(".toast-message");
+		const toastMessageItems = $$(".toast-message__list__item");
+
+		if (!toastMessageItems?.length) {
+			toastMessageContainer.style.display = "none";
+		} else {
+			toastMessageContainer.style.display = "block";
+		}
+	}
+	setVisibilityOfToastMessageContainer();
+
 	// close a toast message function
 	async function cancel() {
 		toastMessageItemElement.style.animation =
 			"hideToastMessageItem ease 0.5s";
-
 		setVisibilityOfCloseAllToastMessageButton(getCountToastMessage() - 1);
+
 		await General.prototype.wait(500);
 		toastMessageItemElement.remove();
+		setVisibilityOfToastMessageContainer();
 	}
 
 	// get count toast message items
@@ -110,6 +122,7 @@ General.prototype.cancelToastMessge = async (element) => {
 // CLOSE ALL TOAST MESSAGES
 (function closeAllToastMessage() {
 	const closeAllBtn = $(".toast-message__close-all");
+	const toastMessageContainer = $(".toast-message");
 
 	// click handle function
 	async function closeAllToastMessageHandle() {
@@ -122,8 +135,10 @@ General.prototype.cancelToastMessge = async (element) => {
 		});
 
 		closeAllBtn.style.animation = "hideCloseAllToastMessageButton ease 0.6s";
+
 		await General.prototype.wait(600);
 		closeAllBtn.style.display = "none";
+		toastMessageContainer.style.display = "none";
 	}
 
 	// click event

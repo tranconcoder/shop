@@ -32,10 +32,11 @@ async function inputCheck(
 	}
 ) {
 	// general
-	const inputValue = $(`${inputSelector}`).value;
+	const inputValue = `${$(`${inputSelector}`).value}`;
 	const inputContainer = $(`${inputContainerSelector}`);
 	const toastMessageItem = $(`.${option.toastMessage.name}`);
 
+	// fail handle function
 	function fail(message) {
 		// set fail style to input container
 		inputContainer.classList.add("fail");
@@ -60,13 +61,10 @@ async function inputCheck(
 
 	// length check
 	if (option.lengthCheck) {
-		const lengthCheckResult = await General.prototype.lengthCheck(
-			inputValue,
-			{
-				min: option.lengthCheck.min,
-				max: option.lengthCheck.max,
-			}
-		);
+		const lengthCheckResult = await inputValue.lengthCheck({
+			min: option.lengthCheck.min,
+			max: option.lengthCheck.max,
+		});
 
 		if (lengthCheckResult === 1) {
 			fail(option.message.message1_1);
@@ -82,9 +80,7 @@ async function inputCheck(
 	// syntax check
 	if (option.syntaxCheck) {
 		if (option.syntaxCheck.type === "GMAIL") {
-			const gmailCheckResult = await General.prototype.gmailCheck(
-				inputValue
-			);
+			const gmailCheckResult = await inputValue.isGmail();
 
 			if (!gmailCheckResult) {
 				fail(option.message.message2_1);
@@ -94,8 +90,7 @@ async function inputCheck(
 		}
 
 		if (option.syntaxCheck.type === "ACCEPT_CHARACTER") {
-			const invalidCharacterArr = await General.prototype.onlyHasCharacter(
-				inputValue,
+			const invalidCharacterArr = await inputValue.onlyHasCharacter(
 				option.syntaxCheck.acceptCharacter
 			);
 

@@ -1,29 +1,28 @@
 @import "../general/general.scss", "../general/variables", "../general/mixin";
 
+// variables
+$toolsBoxSeperate: 5rem;
+$boxTitleSeperateX: 1rem;
+$boxTitleSeperateY: 0.5rem;
+$toolsBoxHeight: 12rem;
+$toolsBoxItemHeight: 10rem;
+$toolsBoxItemWidth: 34rem;
+$toolsBoxPrevNextWidth: 6rem;
+$hotProductsHeaderHeight: 10rem;
+
 // font
 //'M PLUS Rounded 1c', sans-serif;
 @import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap");
 // 'Patrick Hand', cursive;
 @import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Signika:wght@600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@400;500;600;700&display=swap");
+
 .home-ctn {
-	padding: 0;
-
-	& > * {
-		margin-top: 2rem !important;
-		background-color: rgb(254, 254, 254);
-		border-radius: 1rem;
-		box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
-		transition: ease 0.2s;
-		will-change: transform, box-shadow;
-
-		&:hover {
-			box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.4);
-			transform: translateY(-0.2rem);
-		}
-	}
+	padding: 3rem 0;
 
 	&__view-box {
-		@include size(90%, 45rem);
+		@include size(false, 45rem);
 		@include position(relative);
 		@include flex(row, center);
 		background-repeat: no-repeat;
@@ -31,6 +30,8 @@
 		background-size: contain, cover;
 		margin: 0 auto;
 		overflow: hidden;
+		box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.2);
+		transition: ease 0.2s;
 
 		&__content-box {
 			@include size(auto, false);
@@ -53,7 +54,7 @@
 
 			&__btn {
 				@include size(20rem, 3.4rem);
-				color: #2668d9;
+				color: $primaryColor;
 				background-color: #fff;
 				border-radius: 1rem;
 				font: 700 1.4rem "M PLUS Rounded 1c", sans-serif;
@@ -64,18 +65,10 @@
 				&:hover {
 					cursor: pointer;
 					color: #fff;
-					background-color: #2668d9;
+					background-color: $primaryColor;
 					border: 0.15rem solid #5596ff;
 				}
 			}
-		}
-
-		&__vector-image-0 {
-			@include size(25rem);
-			@include position(absolute, false, false, 0, 0rem);
-			object-fit: contain;
-			padding: 0;
-			z-index: 1;
 		}
 
 		&__vector-image-1 {
@@ -96,5 +89,247 @@
 			background-position: bottom left;
 			z-index: 0;
 		}
+	}
+
+	&__tools-box {
+		@include size(false, $toolsBoxHeight);
+		@include flex(row, center);
+		@include position(relative);
+		flex-wrap: nowrap;
+		box-shadow: 0 0.3rem 1rem 0.3rem rgba(0, 0, 0, 0.1);
+		margin: 0 auto;
+		padding: 1rem;
+
+		&__label {
+			// empty
+		}
+
+		&__prev,
+		&__next {
+			@include size($toolsBoxPrevNextWidth, 100%);
+			@include flex(row, center, center);
+			@include position(relative);
+			transform: translateY(-50%);
+			padding: 0;
+			color: #4747477c;
+			font-size: 3rem;
+			transition: all ease 0.3s;
+			z-index: 1;
+			border-radius: inherit;
+			overflow: hidden;
+
+			&::before {
+				@include position(absolute, 0, 0, 0, 0);
+				content: "";
+				display: block;
+				z-index: -1;
+				transition: ease 0.5s;
+				opacity: 0;
+			}
+
+			&:hover {
+				color: #474747;
+				cursor: pointer;
+
+				&::before {
+					opacity: 1;
+				}
+			}
+		}
+
+		&__prev {
+			@include position(absolute, 50%, false, false, 0);
+
+			&::before {
+				background-image: linear-gradient(
+					90deg,
+					rgba(0, 0, 0, 0.1),
+					transparent
+				);
+			}
+		}
+
+		&__next {
+			@include position(absolute, 50%, 0);
+			background-color: #fff;
+
+			&::before {
+				background-image: linear-gradient(
+					90deg,
+					transparent,
+					rgba(0, 0, 0, 0.1)
+				);
+			}
+		}
+
+		&__tools-container {
+			@include size(auto, 100%);
+			flex-shrink: unset !important;
+			overflow-x: scroll;
+			overflow-y: scroll;
+			scroll-behavior: smooth;
+			padding: 0;
+
+			&::-webkit-scrollbar {
+				display: none;
+			}
+
+			&__list {
+				@include size(max-content, 100%);
+				@include flex(row, center);
+				margin: 0;
+				padding: 0 $toolsBoxPrevNextWidth;
+
+				& > * {
+					@include size($toolsBoxItemWidth, $toolsBoxItemHeight);
+					@include flex(row, center);
+					@include position(relative);
+					border-radius: 1rem;
+					margin-right: 2rem;
+					background-image: linear-gradient(45deg, #00c8ff, #0048ff);
+					transition: ease 0.2s;
+
+					&:last-child {
+						margin-right: 0.3rem;
+					}
+
+					// icon shadow
+					&::before {
+						@include size($toolsBoxItemHeight - 1.4rem);
+						@include position(absolute);
+						margin: 0.7rem;
+						content: "";
+						display: block;
+						border-radius: inherit;
+					}
+
+					&:hover {
+						cursor: pointer;
+
+						& > div {
+							& > div {
+								visibility: visible;
+								opacity: 1;
+							}
+						}
+					}
+
+					// icon image
+					& > img {
+						@include size(false, 100%);
+						@include position(relative);
+						padding: 1.6rem 2.2rem 1.6rem 1.6rem;
+						z-index: 1;
+					}
+
+					// content
+					& > div {
+						@include flex(row, center);
+						flex-grow: 1;
+						align-self: stretch;
+						color: #fff;
+
+						// main label
+						& > h2 {
+							font: 600 2.2rem "Signika", cursive;
+							margin: 0;
+						}
+
+						// button direct handle
+						& > div {
+							@include flex(row, center);
+							@include position(absolute, false, 1rem, 1rem);
+							transition: ease 0.2s;
+							opacity: 0.3;
+
+							// label content
+							& > p {
+								font: 400 1.6rem "Signika", sans-serif;
+								margin: 0 0.3rem 0 0;
+							}
+
+							// icon next
+							& > img {
+								@include size(1rem);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&__hot-products {
+		@include size(90%, false);
+		border: 0.1rem solid #ccc;
+		display: block;
+		margin: 0 auto;
+
+		&__header {
+			@include size(100%, $hotProductsHeaderHeight);
+			@include position(relative);
+			border-radius: inherit;
+			background-image: linear-gradient(70deg, #00e6ff, #0066ff);
+
+			&__background {
+				&-left,
+				&-right {
+					@include position(absolute, false, false, 0);
+				}
+
+				&-left {
+					@include size(10rem, false);
+					left: 0;
+				}
+
+				&-right {
+					@include size(30rem, false);
+					right: 0;
+				}
+			}
+
+			&__icon {
+				&-left,
+				&-right {
+					@include size(false, 100%);
+					@include position(absolute, 0);
+					padding: 1rem;
+					z-index: 1;
+				}
+
+				&-left {
+					left: 0;
+				}
+
+				&-right {
+					right: 0;
+				}
+			}
+		}
+
+		&__products {
+			background-color: $primaryColor;
+		}
+	}
+
+	& > * {
+		@include size(90%, false);
+		border-radius: 1rem;
+
+		&:not(:last-child) {
+			margin-bottom: $toolsBoxSeperate !important;
+		}
+	}
+
+	.title-box {
+		@include size(auto);
+		@include position(absolute, false, false, 100%, $boxTitleSeperateX);
+		transform: translateY(-$boxTitleSeperateY);
+		font: 400 2rem "Signika", sans-serif;
+		background: -webkit-linear-gradient(180deg, #00ade2, #0048ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		margin: 0;
+		padding-top: 1rem;
 	}
 }

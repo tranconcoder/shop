@@ -37,7 +37,6 @@ $avatarMoreProfileSeperate: 1.4rem;
 	@include position(fixed, 0, 0);
 	padding: 0;
 	background-color: $whiteColor;
-	box-shadow: 0 0.3rem 1rem 0.1rem rgba(0, 0, 0, 0.1);
 
 	.navbar {
 		@include size(100%);

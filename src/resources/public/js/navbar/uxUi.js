@@ -93,3 +93,21 @@
 		}
 	});
 })();
+
+// set box shadow to header when scroll
+(function setBoxShadowHeader() {
+	window.addEventListener("DOMContentLoaded", (e) => {
+		const header = $(".header");
+		console.dir(header);
+
+		function setBoxShadowHeaderHandle(e) {
+			if (e.target.scrollingElement.scrollTop) {
+				header.style.boxShadow = "0 0.3rem 1rem 0.1rem rgba(0, 0, 0, 0.1)";
+			} else {
+				header.style.boxShadow = "";
+			}
+		}
+
+		document.addEventListener("scroll", setBoxShadowHeaderHandle);
+	});
+})();

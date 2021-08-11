@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="/static/css/homePage/home.css" />
 
 <div class="home-ctn container-xxl">
-	{{! VIEW BOX }}
-	<div class="row home-ctn__view-box">
-		{{! CONTENT BOX }}
+	{{! view box }}
+	<div class="home-ctn__view-box">
+		{{! content box }}
 		<div class="home-ctn__view-box__content-box">
 			<h2 class="home-ctn__view-box__content-box__title">TRAO ĐỔI HÀNG HÓA
 				NHANH CHÓNG
@@ -14,13 +14,7 @@
 			<button class="home-ctn__view-box__content-box__btn btn">Tìm hiểu ngay</button>
 		</div>
 
-		{{! IMAGE LEFT }}
-		<img
-			class="home-ctn__view-box__vector-image-0"
-			src="/static/img/homePage/view-box-element0.png"
-		/>
-
-		{{! IMAGE RIGHT}}
+		{{! image right}}
 		<img
 			class="home-ctn__view-box__vector-image-1"
 			src="/static/svg/homePage/view-box-element1.svg"
@@ -28,20 +22,56 @@
 		<div class="home-ctn__view-box__background"></div>
 	</div>
 
-	{{! TOOLS BOX }}
-	<div class="row home-ctn__tools-box">
-		{{! BUY PRODUCTS }}
+	{{! tools box }}
+	<div class="home-ctn__tools-box">
+		{{! label }}
+		<h2 class="home-ctn__tools-box__label title-box">Các tính năng</h2>
 
-		{{! SELL PRODUCTS }}
+		{{! prev button }}
+		<div class="home-ctn__tools-box__prev">
+			<i class="home-ctn__tools-box__prev__icon fal fa-chevron-left"></i>
+		</div>
 
-		{{! MY CART }}
+		<div class="home-ctn__tools-box__tools-container">
+			<ul class="home-ctn__tools-box__tools-container__list"></ul>
+		</div>
 
-		{{! MY SELLING PRODUCTS }}
-
-		{{! HIRE TRANSPORT }}
-
-		{{!  }}
+		{{! next button }}
+		<div class="home-ctn__tools-box__next">
+			<i class="home-ctn__tools-box__next__icon fal fa-chevron-right"></i>
+		</div>
 	</div>
+
+	{{! hot products }}
+	<div class="home-ctn__hot-products">
+		<div class="home-ctn__hot-products__header">
+			<img
+				class="home-ctn__hot-products__header__background-left"
+				src="/static/svg/homePage/hot-products-background-left.svg"
+				alt=""
+			/>
+			<img
+				class="home-ctn__hot-products__header__icon-left"
+				src="/static/svg/homePage/delivery-man.svg"
+				alt=""
+			/>
+
+			<div class="home-ctn__hot-products__header__label"></div>
+
+			<img
+				class="home-ctn__hot-products__header__icon-right"
+				src="/static/svg/homePage/delivery.svg"
+				alt=""
+			/>
+			<img
+				class="home-ctn__hot-products__header__background-right"
+				src="/static/svg/homePage/hot-products-background-right.svg"
+				alt=""
+			/>
+		</div>
+		<div class="home-ctn__hot-products__products"></div>
+	</div>
+
 </div>
 
 <script src="/static/js/homePage/uxUi.js"></script>

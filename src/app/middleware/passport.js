@@ -52,6 +52,11 @@ router.post(
 	})
 );
 
+router.get("/authenticate/logout", (req, res, next) => {
+	req.logout();
+	res.redirect("/authenticate");
+});
+
 passport.serializeUser(function (user, done) {
 	done(null, user);
 });
