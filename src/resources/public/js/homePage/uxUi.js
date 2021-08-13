@@ -1,4 +1,4 @@
-// set tools box item click event handle [DIRECT]
+// Set tools box item click event handle [DIRECT]
 (function toolsBoxItemClickEvent() {
 	const toolsBoxListContainer = $(
 		".home-ctn__tools-box__tools-container__list"
@@ -114,4 +114,128 @@
 			});
 		}
 	}
+})();
+
+// Render hot products
+(function renderHotProducts() {
+	const productsWrapper = $(".home-ctn__hot-products__products");
+	const products = [
+		{
+			image: "1.jpg",
+			name: "Xe gì đ biết!",
+			shop: "ConsShop",
+			id: 0,
+			price: "10 tỷ",
+		},
+		{
+			image: "2".jpg",
+			name: "Apple Macbook",
+			shop: "ConsShop",
+			id: 1,
+			price: "Free",
+		},
+		{
+			image: "macBook.jpg",
+			name: "Apple Macbook",
+			shop: "ConsShop",
+			id: 2,
+			price: "Free",
+		},
+		{
+			image: "macBook.jpg",
+			name: "Apple Macbook",
+			shop: "ConsShop",
+			id: 3,
+			price: "Free",
+		},
+		{
+			image: "macBook.jpg",
+			name: "Apple Macbook",
+			shop: "ConsShop",
+			id: 4,
+			price: "Free",
+		},
+		{
+			image: "macBook.jpg",
+			name: "Apple Macbook",
+			shop: "ConsShop",
+			id: 5,
+			price: "Free",
+		},
+		{
+			image: "macBook.jpg",
+			name: "Apple Macbook",
+			shop: "ConsShop",
+			id: 6,
+			price: "Free",
+		},
+	];
+
+	products.forEach((product) => {
+		const addingProduct = document.createElement("div");
+		addingProduct.className = "home-ctn__hot-products__products__item col";
+		addingProduct.innerHTML = `
+			<div class="home-ctn__hot-products__products__item__wrapper">
+				<div
+					class="home-ctn__hot-products__products__item__wrapper__thumb-ctn"
+				>
+					<img
+						class="home-ctn__hot-products__products__item__wrapper__thumb-ctn__img"
+						src="/static/img/general/products-thumb/${product.image}"
+						alt=""
+					/>
+				</div>
+				<h2
+					class="home-ctn__hot-products__products__item__wrapper__name"
+				>
+					${product.name}
+				</h2>
+				<div
+					class="home-ctn__hot-products__products__item__wrapper__seller-info"
+				>
+					<img
+						src="/static/img/general/seller-avatars/shop.svg"
+						alt="hot-product"
+						class="home-ctn__hot-products__products__item__wrapper__seller-info__avatar"
+					/>
+					<div
+						class="home-ctn__hot-products__products__item__wrapper__seller-info__info"
+					>
+						<h2
+							class="home-ctn__hot-products__products__item__wrapper__seller-info__info__name"
+						>${product.shop}</h2>
+						<h3
+							class="home-ctn__hot-products__products__item__wrapper__seller-info__info__id"
+						>Id: ${product.id}</h3>
+					</div>
+				</div>
+				<div
+					class="home-ctn__hot-products__products__item__wrapper__rating"
+				>
+					<img src="/static/svg/general/star.svg" alt="" />
+					<img src="/static/svg/general/star.svg" alt="" />
+					<img src="/static/svg/general/star.svg" alt="" />
+					<img src="/static/svg/general/star.svg" alt="" />
+					<img src="/static/svg/general/star-half.svg" alt="" />
+				</div>
+
+				<div
+					class="home-ctn__hot-products__products__item__wrapper__btn-wrapper"
+				>
+					<button
+						class="home-ctn__hot-products__products__item__wrapper__btn-wrapper__price"
+					>
+						${product.price}
+					</button>
+					<button
+						class="home-ctn__hot-products__products__item__wrapper__btn-wrapper__view"
+					>
+						xem sản phẩm
+					</button>
+				</div>
+			</div>
+		`;
+
+		productsWrapper.appendChild(addingProduct);
+	});
 })();

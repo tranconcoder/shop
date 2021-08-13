@@ -25,7 +25,7 @@
 	{{! tools box }}
 	<div class="home-ctn__tools-box">
 		{{! label }}
-		<h2 class="home-ctn__tools-box__label title-box">Các tính năng</h2>
+		<h2 class="title-box">Các tính năng</h2>
 
 		{{! prev button }}
 		<div class="home-ctn__tools-box__prev">
@@ -45,31 +45,93 @@
 	{{! hot products }}
 	<div class="home-ctn__hot-products">
 		<div class="home-ctn__hot-products__header">
+			<div class="home-ctn__hot-products__header__label">
+				<h2>DANH SÁCH SẢN PHẨM BÁN CHẠY NHẤT!</h2>
+			</div>
 			<img
-				class="home-ctn__hot-products__header__background-left"
-				src="/static/svg/homePage/hot-products-background-left.svg"
-				alt=""
-			/>
-			<img
-				class="home-ctn__hot-products__header__icon-left"
-				src="/static/svg/homePage/delivery-man.svg"
-				alt=""
-			/>
-
-			<div class="home-ctn__hot-products__header__label"></div>
-
-			<img
-				class="home-ctn__hot-products__header__icon-right"
-				src="/static/svg/homePage/delivery.svg"
-				alt=""
-			/>
-			<img
-				class="home-ctn__hot-products__header__background-right"
-				src="/static/svg/homePage/hot-products-background-right.svg"
-				alt=""
+				class="home-ctn__hot-products__header__more"
+				src="/static/svg/homePage/right-arrow.svg"
 			/>
 		</div>
-		<div class="home-ctn__hot-products__products"></div>
+
+		<div class="home-ctn__hot-products__wrapper container-fluid p-0">
+			<div
+				class="home-ctn__hot-products__products row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 gx-4 gy-4 pb-4 m-0 justify-content-center"
+			>
+				{{! ITEM }}
+				<div class="home-ctn__hot-products__products__item col">
+					<div class="home-ctn__hot-products__products__item__wrapper">
+						{{! Thumbnail }}
+						<div
+							class="home-ctn__hot-products__products__item__wrapper__thumb-ctn"
+						>
+							<img
+								class="home-ctn__hot-products__products__item__wrapper__thumb-ctn__img"
+								src="/static/img/general/products-thumb/Xiaomi-mi-9t-pro-miui-12-5-1600x900.jpg"
+								alt=""
+							/>
+						</div>
+						{{! Name }}
+						<h2
+							class="home-ctn__hot-products__products__item__wrapper__name"
+						>
+							Lenovo Thinkpad X1 Carbon
+						</h2>
+						{{! Seller infomation }}
+						<div
+							class="home-ctn__hot-products__products__item__wrapper__seller-info"
+						>
+							{{! Avatar }}
+							<img
+								src="/static/img/general/seller-avatars/shop.svg"
+								alt=""
+								class="home-ctn__hot-products__products__item__wrapper__seller-info__avatar"
+							/>
+							{{! Info }}
+							<div
+								class="home-ctn__hot-products__products__item__wrapper__seller-info__info"
+							>
+								<h2
+									class="home-ctn__hot-products__products__item__wrapper__seller-info__info__name"
+								>ConsShop</h2>
+								<h3
+									class="home-ctn__hot-products__products__item__wrapper__seller-info__info__id"
+								>Id: 1031</h3>
+							</div>
+						</div>
+						{{! Rating }}
+						<div
+							class="home-ctn__hot-products__products__item__wrapper__rating"
+						>
+							<img src="/static/svg/general/star.svg" alt="" />
+							<img src="/static/svg/general/star.svg" alt="" />
+							<img src="/static/svg/general/star.svg" alt="" />
+							<img src="/static/svg/general/star.svg" alt="" />
+							<img src="/static/svg/general/star-half.svg" alt="" />
+						</div>
+
+						{{! BUTTON Container }}
+						<div
+							class="home-ctn__hot-products__products__item__wrapper__btn-wrapper"
+						>
+							{{! Price }}
+							<button
+								class="home-ctn__hot-products__products__item__wrapper__btn-wrapper__price"
+							>
+								30.000đ
+							</button>
+							{{! View }}
+							<button
+								class="home-ctn__hot-products__products__item__wrapper__btn-wrapper__view"
+							>
+								xem sản phẩm
+							</button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
 	</div>
 
 </div>

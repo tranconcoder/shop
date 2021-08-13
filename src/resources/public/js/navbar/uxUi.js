@@ -98,7 +98,6 @@
 (function setBoxShadowHeader() {
 	window.addEventListener("DOMContentLoaded", (e) => {
 		const header = $(".header");
-		console.dir(header);
 
 		function setBoxShadowHeaderHandle(e) {
 			if (e.target.scrollingElement.scrollTop) {

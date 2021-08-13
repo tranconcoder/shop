@@ -8,7 +8,13 @@ $toolsBoxHeight: 12rem;
 $toolsBoxItemHeight: 10rem;
 $toolsBoxItemWidth: 34rem;
 $toolsBoxPrevNextWidth: 6rem;
-$hotProductsHeaderHeight: 10rem;
+$hotProductsHeaderHeight: 4rem;
+$hotProductsItemPadding: 1rem;
+$hotProducstItemBtnHeight: 3.6rem;
+
+:root {
+	--hotProducstItemBtnHeight: 1rem;
+}
 
 // font
 //'M PLUS Rounded 1c', sans-serif;
@@ -17,6 +23,8 @@ $hotProductsHeaderHeight: 10rem;
 @import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Signika:wght@600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap");
 
 .home-ctn {
 	padding: 3rem 0;
@@ -244,7 +252,7 @@ $hotProductsHeaderHeight: 10rem;
 
 							// label content
 							& > p {
-								font: 400 1.6rem "Signika", sans-serif;
+								font: 500 1.4rem "Signika", sans-serif;
 								margin: 0 0.3rem 0 0;
 							}
 
@@ -264,51 +272,196 @@ $hotProductsHeaderHeight: 10rem;
 		border: 0.1rem solid #ccc;
 		display: block;
 		margin: 0 auto;
+		overflow: hidden;
 
 		&__header {
 			@include size(100%, $hotProductsHeaderHeight);
+			@include flex(row, center);
 			@include position(relative);
-			border-radius: inherit;
+			border-bottom: 0.1rem solid #ccc;
 			background-image: linear-gradient(70deg, #00e6ff, #0066ff);
+			padding: 0 3rem;
 
-			&__background {
-				&-left,
-				&-right {
-					@include position(absolute, false, false, 0);
-				}
+			&:hover {
+				cursor: pointer;
 
-				&-left {
-					@include size(10rem, false);
-					left: 0;
-				}
-
-				&-right {
-					@include size(30rem, false);
-					right: 0;
+				.home-ctn__hot-products__header__more {
+					opacity: 1;
 				}
 			}
 
-			&__icon {
-				&-left,
-				&-right {
-					@include size(false, 100%);
-					@include position(absolute, 0);
-					padding: 1rem;
-					z-index: 1;
-				}
+			&__label {
+				flex-grow: 1;
+				text-align: center;
 
-				&-left {
-					left: 0;
+				h2 {
+					color: #fff;
+					font: 400 2.2rem "Signika", cursive;
+					margin: 0;
 				}
+			}
 
-				&-right {
-					right: 0;
-				}
+			&__more {
+				@include size(false, 3rem);
+				opacity: 0.3;
+				transition: ease 0.5s;
 			}
 		}
 
 		&__products {
-			background-color: $primaryColor;
+			&__item {
+				@include flex(column, center);
+				@include position(relative);
+
+				&__wrapper {
+					@include size(100%);
+					@include position(relative);
+					box-shadow: rgba(0, 0, 0, 0.06) 0px 3px 12px;
+					border-radius: 1.4rem;
+					padding: 1rem 1rem $hotProducstItemBtnHeight +
+						(2 * $hotProductsItemPadding) 1rem;
+					transition: ease 0.2s;
+
+					&:hover {
+						cursor: pointer;
+						box-shadow: rgba(17, 12, 46, 0.15) 0px 5px 20px 0px;
+
+						.home-ctn__hot-products__products__item__wrapper__btn-wrapper__price {
+						}
+					}
+
+					&__thumb-ctn {
+						@include size(100%, false);
+						@include position(relative);
+						padding: 1rem;
+
+						&__img {
+							@include size(100%);
+							@include position(absolute, 0, 0);
+							object-fit: contain;
+							overflow: hidden;
+							border-radius: 2rem;
+						}
+
+						&::before {
+							@include size(100%, false);
+							content: "";
+							display: block;
+							padding-bottom: 100%;
+						}
+					}
+
+					&__name {
+						@include maxSize(false, 4rem);
+						color: rgb(85, 85, 85);
+						font: 500 1.6rem "M PLUS Rounded 1c", sans-serif;
+						line-height: 2rem;
+						word-wrap: break-word;
+						margin: 1rem 0 0;
+						overflow: hidden;
+						display: -webkit-box;
+						-webkit-box-orient: vertical;
+						-webkit-line-clamp: 2;
+					}
+
+					&__seller-info {
+						@include size(100%, 4rem);
+						@include flex(row, center);
+						margin: 1rem 0;
+
+						&__avatar {
+							@include size(false, 100%);
+							border-radius: 50%;
+							box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
+								rgba(0, 0, 0, 0.24) 0px 1px 2px;
+						}
+
+						&__info {
+							@include size(15rem, false);
+							margin-left: 0.5rem;
+
+							& > * {
+								@include size(100%, false);
+								color: rgb(160, 160, 160);
+								margin: 0;
+								white-space: nowrap;
+								overflow: hidden;
+								text-overflow: ellipsis;
+							}
+
+							&__name {
+								font: 400 1.2rem "Rubik", sans-serif;
+							}
+
+							&__id {
+								font: 300 1.1rem "Rubik", sans-serif;
+							}
+						}
+					}
+
+					&__rating {
+						@include size(100%, 1.2rem);
+						@include flex(row, center);
+
+						& > img {
+							@include size(false, 100%);
+							margin-right: 0.3rem;
+						}
+					}
+
+					&__btn-wrapper {
+						@include size(
+							calc(100% - 2 * var(--hotProducstItemBtnHeight)),
+							$hotProducstItemBtnHeight
+						);
+						@include position(
+							absolute,
+							false,
+							false,
+							$hotProductsItemPadding,
+							$hotProductsItemPadding
+						);
+						border-radius: 1rem;
+						margin-top: 1rem;
+						overflow: hidden;
+						box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+							rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+						&:hover {
+							.home-ctn__hot-products__products__item__wrapper__btn-wrapper__price {
+								transform: rotate3d(0, 1, -1, 90deg);
+								opacity: 0;
+							}
+
+							.home-ctn__hot-products__products__item__wrapper__btn-wrapper__view {
+								opacity: 1;
+							}
+						}
+
+						& > * {
+							@include size(100%);
+							background-color: #fff;
+							border: 0;
+							border-radius: inherit;
+							color: $primaryColor;
+							font: 500 1.4rem "M PLUS Rounded 1c", sans-serif;
+							transition: linear 0.5s;
+						}
+
+						&__price {
+							@include position(absolute, 0, 0);
+							background-color: #fff;
+							transform-origin: bottom left;
+						}
+
+						&__view {
+							color: #fff;
+							background-color: $primaryColor;
+							opacity: 0;
+						}
+					}
+				}
+			}
 		}
 	}
 
