@@ -6,7 +6,7 @@ const route = require("./route/routeIndex.js");
 const path = require("path");
 
 const app = express();
-const port = 3000;
+const PORT = 3000;
 
 //Static file in path: src/resources/public
 app.use("/static", express.static(path.join(__dirname, "resources/public")));
