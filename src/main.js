@@ -38,7 +38,7 @@ route(app);
 	await dbConnect();
 
 	// Server listening
-	app.listen(port, () => {
-		console.log(`Listening at http://localhost:${port}`);
+	app.listen(PORT, () => {
+		console.log(`Listening at http://localhost:${PORT}`);
 	});
 })();
